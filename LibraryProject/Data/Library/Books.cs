@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryProject.Data.Users
+namespace Data.Library
 {
-    internal class Customer
+    internal class Books
     {
     }
 }
