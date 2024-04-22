@@ -8,5 +8,11 @@ namespace Data.Library.API
 {
     internal interface IDataRepository
     {
+        void AddCustomer(Users.Customer Customer);
+        void DeleteCustomer(Users.Customer customer);
+        Users.Customer GetCustomerByID(int customerID);
+        List<Users.Customer> GetAllCustomers();
+
+        
     }
 }
