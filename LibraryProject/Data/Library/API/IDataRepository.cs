@@ -13,6 +13,6 @@ namespace Data.Library.API
         Users.Customer GetCustomerByID(int customerID);
         List<Users.Customer> GetAllCustomers();
 
-        
+        void AddBook(Book book);
     }
 }
