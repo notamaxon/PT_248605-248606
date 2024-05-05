@@ -8,20 +8,8 @@ namespace Data.Users
 {
     public class Customer : User
     {
-        private int CustomerID;
-        public Customer(string name, string surname, string email, string phone, int CustomerID) : base(name, surname, email, phone)
-        {
-            this.CustomerID = CustomerID;   
-        }
+        public string Name { get; set; }
+        public string Surname { get; set; }
 
-        public int GetCustomerID()
-        {
-            return this.CustomerID;
-        }
-        
-        public void SetCustomerID(int CustomerID)
-        {
-            this.CustomerID = CustomerID;
-        }
     }
 }
