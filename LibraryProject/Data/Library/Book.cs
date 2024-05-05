@@ -8,9 +8,9 @@ namespace Data.Library
 {
     internal class Book
     {
-        private string Title { get; set; }
-        private string Author { get; set; }
-        private string Description{ get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public string Description{ get; set; }
 
         public Book(string title, string author, string description) { 
             Title = title;
