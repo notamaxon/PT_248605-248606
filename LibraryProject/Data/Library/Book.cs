@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data
+namespace Data.Library
 {
     public class Book
     {
-        public string Title{ get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public Users.User Author { get; set; }
         public BookGenres Genre { get; set; }
@@ -22,7 +22,8 @@ namespace Data
         }
     }
 
-    public enum BookGenres {
+    public enum BookGenres
+    {
         none,
         horror,
         mystery,

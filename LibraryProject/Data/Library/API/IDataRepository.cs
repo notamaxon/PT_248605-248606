@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.API
+namespace Data.Library.API
 {
     public interface IDataRepository
     {
-        
+
     }
 }
