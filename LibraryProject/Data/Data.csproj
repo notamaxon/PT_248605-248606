@@ -43,10 +43,12 @@
   <ItemGroup>
     <Compile Include="Library\Book.cs" />
     <Compile Include="Library\DataRepository.cs" />
+    <Compile Include="Library\ListOfBooks.cs" />
     <Compile Include="Library\API\IDataRepository.cs" />
     <Compile Include="Library\ListOfBooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\Customer.cs" />
+    <Compile Include="Users\Employee.cs" />
     <Compile Include="Users\User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

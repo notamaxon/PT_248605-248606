@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Data.Users
 {
-    internal class Employee
+    public class Employee : User
     {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Position { get; set; }
+        public double Salary { get; set; }
+
+
+
+
     }
 }
