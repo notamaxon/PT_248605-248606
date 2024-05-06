@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Library
 {
-    internal class DataContext
+    public class DataContext
     {
         public List<Users.Customer> CustomerList { get; set; }
         public Dictionary<int, Book> Books { get; set; }
