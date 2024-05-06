@@ -14,31 +14,29 @@ namespace Data.Library.API
         // Customer
         void AddCustomer(Customer customer);
         void DeleteCustomer(Customer customer);
-        void UpdateCustomer(Customer customer);
-        Customer GetCustomer(int id);
+        Customer GetCustomer(string id);
         List<Customer> GetAllCustomers();
 
         // Book
         void AddBook(Book book);
-        void UpdateBook(Book book);
-        void DeleteBook(int id);
-        Book GetBook(int id);
-        List<Book> GetAllBooks();
+        void DeleteBook(Book book);
+        Book GetBook(string id);
+        Dictionary<string, Book> GetAllBooks();
 
         // State
 
         void AddState(State state); 
-        void UpdateState(State state);  
-        void DeleteState(int id);
+        void DeleteState(State state);
+        State GetState(string id); 
         List<State> GetAllState();
 
 
         // Event
 
         void AddEvent(EventAbstract eventAbstract);
-        void UpdateEvent(EventAbstract eventAbstract);
         void DeleteEvent(EventAbstract eventAbstract);
-        List<EventAbstract> GetEvents();
+        EventAbstract GetEvent(string id);
+        List<EventAbstract> GetAllEvents();
 
         // Author
         void AddAuthor (Author author);

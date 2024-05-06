@@ -5,78 +5,153 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Data.Library
 {
     public class DataRepository : API.IDataRepository
     {
         DataContext dataContext = new DataContext();
+
+        public void AddAuthor(Author author)
+        {
+            if (!(dataContext.Authors.Contains(author))) {
+                dataContext.Authors.Add(author);
+            }
+        }
+
         public void AddBook(Book book)
         {
-            throw new NotImplementedException();
+            dataContext.Books.Add(book.Id, book);
         }
 
         public void AddCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            if (!(dataContext.Customers.Contains(customer)))
+            {
+                dataContext.Customers.Add(customer);
+            }
         }
 
         public void AddEvent(EventAbstract eventAbstract)
         {
-            throw new NotImplementedException();
+            dataContext.Events.Add(eventAbstract);
         }
 
         public void AddState(State state)
         {
-            throw new NotImplementedException();
+            dataContext.States.Add(state);
         }
 
-        public void DeleteBook(int id)
+        public void DeleteAuthor(Author author)
         {
-            throw new NotImplementedException();
+            if (dataContext.Authors.Contains(author)) {
+                dataContext.Authors.Remove(author);
+            }
+        }
+
+        public void DeleteBook(Book book)
+        {
+            if (dataContext.Books.ContainsKey(book.Id)) {
+                dataContext.Books.Remove(book.Id, out book);
+            }
         }
 
         public void DeleteCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            if (dataContext.Customers.Contains(customer)) {
+                dataContext.Customers.Remove(customer);
+            }
         }
 
         public void DeleteEvent(EventAbstract eventAbstract)
         {
-            throw new NotImplementedException();
+            if (dataContext.Events.Contains(eventAbstract)) {
+                dataContext.Events.Remove(eventAbstract);   
+            }
         }
 
-        public void DeleteState(int id)
+        public void DeleteState(State state)
         {
-            throw new NotImplementedException();
+            if (dataContext.States.Contains(state)) { 
+                dataContext.States.Remove(state);
+            }
         }
 
-        public List<Book> GetAllBooks()
+        public List<Author> GetAllAuthor()
         {
-            throw new NotImplementedException();
+            return dataContext.Authors;
+        }
+
+        public Dictionary<string, Book> GetAllBooks()
+        {
+            return dataContext.Books;
         }
 
         public List<Customer> GetAllCustomers()
         {
-            throw new NotImplementedException();
+            return dataContext.Customers;
+        }
+
+        public List<EventAbstract> GetAllEvents()
+        {
+            return dataContext.Events;
         }
 
         public List<State> GetAllState()
         {
-            throw new NotImplementedException();
+            return dataContext.States;
         }
 
-        public Book GetBook(int id)
+        public Book GetBook(string id)
         {
-            throw new NotImplementedException();
+            return dataContext.Books[id];
         }
 
-        public Customer GetCustomer(int id)
+        public Customer GetCustomer(string id)
         {
-            throw new NotImplementedException();
+            var result = new Customer();
+            foreach(var x in dataContext.Customers)
+{
+                if (x.Id == id)
+                {
+                    result = x;
+                    break;
+                }
+            }
+            return result;
         }
 
-        public List<EventAbstract> GetEvents()
+        public EventAbstract GetEvent(string id)
+        {
+            EventAbstract result;
+            foreach (var x in dataContext.Events)
+            {
+                if (x.Id == id)
+                {
+                    result = x;
+                    return result;
+                }
+            }
+            return null;
+            
+        }
+
+        public State GetState(string id)
+        {
+            var result = new State();
+            foreach (var x in dataContext.States)
+            {
+                if (x.Id == id)
+                {
+                    result = x;
+                    break;
+                }
+            }
+            return result;
+        }
+
+        public void UpdateAuthor(Author author)
         {
             throw new NotImplementedException();
         }

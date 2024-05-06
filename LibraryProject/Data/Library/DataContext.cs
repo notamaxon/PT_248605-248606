@@ -13,11 +13,14 @@ namespace Data.Library
         public List<Users.Author> Authors { get; set; }
         public List<Events.EventAbstract> Events { get; set; }
 
+        public List<State> States { get; set; }
+
         public DataContext() { 
             Authors = new List<Users.Author>();
             Customers = new List<Users.Customer>();
             Books = new Dictionary<string, Book>();    
             Events = new List<Events.EventAbstract>();
+            States = new List<State> { };
 
         }
     }
