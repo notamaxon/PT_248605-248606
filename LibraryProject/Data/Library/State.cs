@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Library
 {
-    public class Status
+    public class State
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
@@ -14,13 +14,13 @@ namespace Data.Library
         public StateType Availability { get; set; } = StateType.Unknown;
 
 
-        public Status() {
+        public State() {
             Id = 0;
             Date = DateTime.Now;
             Book = new Book();
             Availability = StateType.Unknown;
         }
-        public Status(int id, Book book, StateType availability)
+        public State(int id, Book book, StateType availability)
         {
             Id = id;
             Date = DateTime.Now;
