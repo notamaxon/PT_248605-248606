@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Data.Library;
 
-namespace Data.Library
+namespace Data.Events
 {
     public abstract class EventAbstract
     {
-       public DateTime EventDate { get; set; }
-       public State State { get; set; }
-       public int Id { get; set; }
+        public DateTime EventDate { get; set; }
+        public State State { get; set; }
+        public int Id { get; set; }
 
-       
+
+
 
     }
 }
