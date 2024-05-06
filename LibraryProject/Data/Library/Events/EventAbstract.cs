@@ -14,7 +14,11 @@ namespace Data.Library.Events
         public int Id { get; set; }
 
 
-
+        public EventAbstract(int id, State state) {
+            EventDate = DateTime.Now;
+            State = state;
+            Id = id;
+        }
 
     }
 }
