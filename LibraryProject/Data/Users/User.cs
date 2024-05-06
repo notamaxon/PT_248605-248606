@@ -23,6 +23,16 @@ namespace Data.Users
             Phone = phone;
 
        }
+        
+        public User() { 
+            Id = string.Empty;
+            Email = string.Empty;
+            Phone = string.Empty;
+            Name = string.Empty;
+            Surname = string.Empty;
+            Email = string.Empty;
+            Phone = string.Empty;
+        }   
 
     }
 
