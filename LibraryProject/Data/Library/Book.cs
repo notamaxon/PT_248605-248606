@@ -9,23 +9,23 @@ namespace Data.Library
 {
     public class Book
     {
+        public string Id { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
         public Users.User Author { get; set; }
         public BookGenres Genre { get; set; }
 
-        public Book(string title, Users.User author, BookGenres genre, string description = "") { 
+        public Book(string title, Users.User author, BookGenres genre) { 
+            Id = Guid.NewGuid().ToString();
             Title = title;
             Author = author;    
-            Genre = genre;  
-            Description = description;  
+            Genre = genre;    
             Author = author;    
         }
         public Book()
         {
+            Id = string.Empty;
             Genre = BookGenres.none;
             Title = string.Empty;
-            Description = string.Empty;
             Author = new Users.Author();
         }
     }

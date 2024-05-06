@@ -9,12 +9,12 @@ namespace Data.Library
     public class DataContext
     {
         public List<Users.Customer> Customers { get; set; }
-        public Dictionary<int, Book> Books { get; set; }
+        public Dictionary<string, Book> Books { get; set; }
         public List<Events.EventAbstract> Events { get; set; }
 
         public DataContext() { 
             Customers = new List<Users.Customer>();
-            Books = new Dictionary<int, Book>();    
+            Books = new Dictionary<string, Book>();    
             Events = new List<Events.EventAbstract>();
 
         }
