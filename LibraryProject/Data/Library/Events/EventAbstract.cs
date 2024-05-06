@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data.Library;
+using Data.Users;
 
 namespace Data.Library.Events
 {
@@ -12,6 +13,7 @@ namespace Data.Library.Events
         public DateTime EventDate { get; set; }
         public State State { get; set; }
         public int Id { get; set; }
+        public Customer Customer { get; set; }  
 
 
         public EventAbstract(int id, State state) {

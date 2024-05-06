@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Data.Library.Events
 {
-    internal class Return
+    public class Return : EventAbstract
     {
+        public int Fee {  get; set; }
+
+        public Return(int id, State state, int fee) : base(id, state) { 
+        {
+            Fee = fee;
+        }
+        }
     }
 }

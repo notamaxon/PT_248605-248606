@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Data.Library.Events
 {
-    internal class Borrow
+    public class Borrow : EventAbstract
     {
+      public DateTime FreeReturnDate { get; set; }
+
+        public Borrow(int id, State state) : base(id, state)
+        {
+            FreeReturnDate = EventDate.AddDays(60);
+        }
     }
 }
