@@ -14,6 +14,10 @@ namespace Data.Users
         {
             Information = information;
         }
+        
+        public Author() :base() { 
+            Information = string.Empty;
+        } 
     }
 
 }

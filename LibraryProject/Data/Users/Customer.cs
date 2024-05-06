@@ -14,6 +14,10 @@ namespace Data.Users
         {
             Adress = adress;
         }
+
+        public Customer() :base() {
+            Adress = string.Empty;
+        }   
     }
 
 }

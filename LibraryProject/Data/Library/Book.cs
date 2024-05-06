@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,13 @@ namespace Data.Library
         public Users.User Author { get; set; }
         public BookGenres Genre { get; set; }
 
+        public Book(string title, Users.User author, BookGenres genre, string description = "") { 
+            Title = title;
+            Author = author;    
+            Genre = genre;  
+            Description = description;  
+            Author = author;    
+        }
         public Book()
         {
             Genre = BookGenres.none;
