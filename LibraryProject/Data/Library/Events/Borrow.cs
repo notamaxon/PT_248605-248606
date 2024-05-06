@@ -10,7 +10,7 @@ namespace Data.Library.Events
     {
       public DateTime FreeReturnDate { get; set; }
 
-        public Borrow(int id, State state) : base(id, state)
+        public Borrow(State state) : base(state)
         {
             FreeReturnDate = EventDate.AddDays(60);
         }
