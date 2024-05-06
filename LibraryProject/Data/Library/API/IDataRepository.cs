@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.API
+namespace Data.Library.API
 {
     public interface IDataRepository
     {
+
         // Customer
         void AddCustomer(Customer customer);
         void DeleteCustomer(Customer customer);
@@ -23,7 +24,7 @@ namespace Data.API
         Book GetBook(int id);
         List<Book> GetAllBooks();
 
-        
+       
 
     }
 }
