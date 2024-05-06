@@ -18,7 +18,7 @@ namespace Data
             Genre = BookGenres.none;
             Title = string.Empty;
             Description = string.Empty;
-            Author = new Author();
+            Author = new Users.Author();
         }
     }
 
