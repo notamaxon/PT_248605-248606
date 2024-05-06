@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Library.API
 {
-    internal interface IDataRepository
+    public interface IDataRepository
     {
         void AddCustomer(Users.Customer Customer);
         void DeleteCustomer(Users.Customer customer);
@@ -14,5 +14,7 @@ namespace Data.Library.API
         List<Users.Customer> GetAllCustomers();
 
         void AddBook(Book book);
+        void DeleteBook(Book book);
+        
     }
 }
