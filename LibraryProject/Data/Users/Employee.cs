@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Users
 {
-    public class Customer : User
+    internal class Employee
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-
     }
 }
