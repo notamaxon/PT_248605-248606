@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Data.Library;
 
-namespace Data.Events
+namespace Data.Library.Events
 {
     public abstract class EventAbstract
     {

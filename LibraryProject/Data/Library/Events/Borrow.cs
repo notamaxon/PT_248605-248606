@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Events
+namespace Data.Library.Events
 {
-    internal class Return
+    internal class Borrow
     {
     }
 }
