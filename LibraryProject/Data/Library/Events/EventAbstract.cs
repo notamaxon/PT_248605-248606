@@ -12,14 +12,14 @@ namespace Data.Library.Events
     {
         public DateTime EventDate { get; set; }
         public State State { get; set; }
-        public int Id { get; set; }
+        public string Id { get; set; }
         public Customer Customer { get; set; }  
 
 
-        public EventAbstract(int id, State state) {
+        public EventAbstract(State state) {
             EventDate = DateTime.Now;
             State = state;
-            Id = id;
+            Id = Guid.NewGuid().ToString();
         }
 
     }

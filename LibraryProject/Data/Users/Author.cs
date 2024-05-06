@@ -10,7 +10,7 @@ namespace Data.Users
     {     
         public string Information { get; set; }
 
-        public Author(string id, string name, string surname, string email, string phone, string information) : base(id, name, surname, email, phone)
+        public Author(string name, string surname, string email, string phone, string information) : base(name, surname, email, phone)
         {
             Information = information;
         }

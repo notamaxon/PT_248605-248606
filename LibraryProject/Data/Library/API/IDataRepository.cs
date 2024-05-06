@@ -40,6 +40,11 @@ namespace Data.Library.API
         void DeleteEvent(EventAbstract eventAbstract);
         List<EventAbstract> GetEvents();
 
+        // Author
+        void AddAuthor (Author author);
+        void UpdateAuthor(Author author);
+        void DeleteAuthor(Author author);
+        List<Author> GetAllAuthor();
         
 
     }

@@ -14,9 +14,9 @@ namespace Data.Users
         public string Name { get; set; }
         public string Surname { get; set; }
 
-        public User(string id, string name, string surname, string email, string phone) {
-        
-            Id = id;
+        public User(string name, string surname, string email, string phone) {
+
+            Id = Guid.NewGuid().ToString();
             Name = name;
             Surname = surname;
             Email = email;

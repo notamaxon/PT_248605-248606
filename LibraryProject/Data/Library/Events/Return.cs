@@ -10,7 +10,7 @@ namespace Data.Library.Events
     {
         public int Fee {  get; set; }
 
-        public Return(int id, State state, int fee) : base(id, state) { 
+        public Return(State state, int fee) : base(state) { 
         {
             Fee = fee;
         }
