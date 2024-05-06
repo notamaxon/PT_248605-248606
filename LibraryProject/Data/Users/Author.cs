@@ -9,7 +9,11 @@ namespace Data.Users
     public class Author : User
     {     
         public string Information { get; set; }
-       
+
+        public Author(string id, string name, string surname, string email, string phone, string information) : base(id, name, surname, email, phone)
+        {
+            Information = information;
+        }
     }
 
 }

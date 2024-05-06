@@ -14,6 +14,16 @@ namespace Data.Users
         public string Name { get; set; }
         public string Surname { get; set; }
 
+        public User(string id, string name, string surname, string email, string phone) {
+        
+            Id = id;
+            Name = name;
+            Surname = surname;
+            Email = email;
+            Phone = phone;
+
+       }
+
     }
 
 
