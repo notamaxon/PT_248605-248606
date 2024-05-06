@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Data.Library.API
 {
-    internal interface IEvent
+    public interface IEvent
     {
+        DateTime EventDate { get; set; }
+
     }
 }
