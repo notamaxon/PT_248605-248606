@@ -40,7 +40,7 @@ namespace Data.Library.API
 
         // Author
         void AddAuthor (Author author);
-        void UpdateAuthor(Author author);
+        Author GetAuthor(string id);
         void DeleteAuthor(Author author);
         List<Author> GetAllAuthor();
         

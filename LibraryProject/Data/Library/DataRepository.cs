@@ -103,6 +103,20 @@ namespace Data.Library
             return dataContext.States;
         }
 
+        public Author GetAuthor(string id)
+        {
+            var result = new Author();
+            foreach (var x in dataContext.Authors)
+            {
+                if (x.Id == id)
+                {
+                    result = x;
+                    break;
+                }
+            }
+            return result;
+        }
+
         public Book GetBook(string id)
         {
             return dataContext.Books[id];
@@ -150,30 +164,6 @@ namespace Data.Library
             }
             return result;
         }
-
-        public void UpdateAuthor(Author author)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateBook(Book book)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateCustomer(Customer customer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateEvent(EventAbstract eventAbstract)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateState(State state)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
