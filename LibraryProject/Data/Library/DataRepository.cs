@@ -11,7 +11,7 @@ namespace Data.Library
 {
     public class DataRepository : API.IDataRepository
     {
-        DataContext dataContext = new DataContext();
+        public DataContext dataContext = new DataContext();
 
         public void AddAuthor(Author author)
         {

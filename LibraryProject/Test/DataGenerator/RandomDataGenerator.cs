@@ -12,7 +12,7 @@ namespace Test.DataGenerator
         private int numberOfCustomers = 3;
         private int numberOfBooks = 5;
         private int numberOfAuthors = 2;
-        public void GenerateData(ref Data.Library.DataContext dataContext)
+        public void GenerateData(ref Data.Library.API.IDataRepository dataRepository)
         {
             Random random = new Random();
             for (int i = 0; i < numberOfCustomers; i++)
@@ -24,7 +24,7 @@ namespace Test.DataGenerator
                 customer.Phone = random.Next(10000, 100000).ToString();
                 customer.Name = random.Next(10000, 100000).ToString();
 
-                dataContext.Customers.Add(customer);
+                dataRepository.AddCustomer(customer);
             }
 
             for (int i = 0; i < numberOfAuthors; i++)
@@ -36,17 +36,17 @@ namespace Test.DataGenerator
                 author.Phone = random.Next(10000, 100000).ToString();
                 author.Name = random.Next(10000, 100000).ToString();
 
-                dataContext.Authors.Add(author);
+                dataRepository.AddAuthor(author);
             }
 
             for (int i = 0;i < numberOfBooks;i++) {
                 Data.Library.Book book = new Data.Library.Book();
-                book.Author = dataContext.Authors[random.Next(0, dataContext.Authors.Count)];
+                book.Author = dataRepository.GetAllAuthor()[random.Next(0, dataRepository.GetAllAuthor().Count)];
                 Array genreValues = Enum.GetValues(typeof(Data.Library.BookGenres));
                 book.Genre = (Data.Library.BookGenres)genreValues.GetValue(random.Next(genreValues.Length));
                 book.Title = random.Next(10000, 100000).ToString();
 
-                dataContext.Books.Add(book.Id, book);
+                dataRepository.AddBook(book);
             }
         }
     }

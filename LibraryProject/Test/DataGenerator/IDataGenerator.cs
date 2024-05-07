@@ -8,6 +8,6 @@ namespace Test.DataGenerator
 {
     public interface IDataGenerator
     {
-        void GenerateData(ref Data.Library.DataContext dataContext);
+        void GenerateData(ref Data.Library.API.IDataRepository dataRepository);
     }
 }
