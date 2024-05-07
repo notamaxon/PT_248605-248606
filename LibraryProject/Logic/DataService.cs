@@ -76,10 +76,8 @@ namespace Logic
             Repository.DeleteBook(book);
         }
 
-        void IDataService.ReturnBook(string bookId, int fee, string customerId)
+        void IDataService.ReturnBook(Book book, Customer customer, int fee = 0)
         {
-            Book book = Repository.GetBook(bookId);
-            Customer customer = Repository.GetCustomer(customerId);
             State state = new State(book, StateType.available);
             Return returnBook = new Return(state, fee);
 
