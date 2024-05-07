@@ -14,6 +14,7 @@ namespace Logic.API
 
         public void AddBook(Book book);
         public void DeleteBook(Book book);
+        public void GetBook(string id);
 
         public void AddCustomer(Customer customer);
         public void DeleteCustomer(Customer customer);
@@ -21,8 +22,8 @@ namespace Logic.API
         public void AddEvent(Data.Library.Events.EventAbstract eventAbstract);
         public void DeleteEvent(Data.Library.Events.EventAbstract eventAbstract);
 
-        public void BorrowBook(Book book);
-        public void ReturnBook(Book book);
+        public void BorrowBook(string bookId, string customerId);
+        public void ReturnBook(string bookId, int fee, string customerId);
 
     }
 }
