@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test.DataGenerators
+namespace Test.DataGenerator
 {
     public interface IDataGenerator
     {
