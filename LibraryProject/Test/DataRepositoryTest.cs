@@ -9,13 +9,7 @@ namespace Data.Tests
     [TestClass]
     public class DataRepositoryTests
     {
-        private DataRepository repository;
-
-        [TestInitialize]
-        public void Setup()
-        {
-            repository = new DataRepository();
-        }
+        private DataRepository repository = new DataRepository();
 
         [TestMethod]
         public void AddBook_BookAddedSuccessfully()

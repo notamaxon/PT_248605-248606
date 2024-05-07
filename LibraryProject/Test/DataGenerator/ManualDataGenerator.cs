@@ -37,8 +37,11 @@ namespace Test.DataGenerator
             dataRepository.AddAuthor(author2);
 
             Book book1 = new Book("The Great Gatsby", author1, BookGenres.fiction);
+            book1.Id = "5";
             Book book2 = new Book("Sapiens", author2, BookGenres.fantasy);
+            book2.Id = "6";
             Book book3 = new Book("ABC", author2, BookGenres.mystery);
+            book3.Id = "7";
 
             dataRepository.AddBook(book1);
             dataRepository.AddBook(book2);
