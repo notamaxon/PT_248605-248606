@@ -6,6 +6,7 @@ using Logic.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,9 +24,9 @@ namespace Logic
             Repository = repository;
         }
       
-        // Book
+       
 
-        
+      
 
         void IDataService.AddBook(Book book)
         {
@@ -37,6 +38,11 @@ namespace Logic
             Repository.DeleteBook(book);
         }
 
+        void IDataService.GetBook(string id)
+        {
+            Repository.GetAllBooks();
+        }
+
         void IDataService.AddCustomer(Customer customer)
         {
             Repository.AddCustomer(customer);
@@ -44,7 +50,7 @@ namespace Logic
 
         void IDataService.DeleteCustomer(Customer customer)
         {
-            Repository.DeleteBook(customer);
+            Repository.DeleteCustomer(customer);
         }
 
         void IDataService.AddEvent(EventAbstract eventAbstract)
@@ -57,21 +63,31 @@ namespace Logic
             Repository.DeleteEvent(eventAbstract);
         }
 
-        void IDataService.BorrowBook(Book book)
+        void IDataService.BorrowBook(string bookId, string customerId)
         {
-            Book book = Repository.GetBook(book);
-            Customer customer = Repository.GetCustomer(customer);
+            Book book = Repository.GetBook(bookId);
+            Customer customer = Repository.GetCustomer(customerId);
             State state = new State(book, StateType.taken);
             Borrow bookBorrow = new Borrow(state);
 
-            Repository.DeleteBook(book);
-            Repository.AddEvent();
+        
+            Repository.AddEvent(bookBorrow);
             Repository.AddState(state);
+            Repository.DeleteBook(book);
         }
 
-        void IDataService.ReturnBook(Book book)
+        void IDataService.ReturnBook(string bookId, int fee, string customerId)
         {
-            
+            Book book = Repository.GetBook(bookId);
+            Customer customer = Repository.GetCustomer(customerId);
+            State state = new State(book, StateType.available);
+            Return returnBook = new Return(state, fee);
+
+            Repository.AddEvent(returnBook);
+            Repository.AddState(state);
+            Repository.AddBook(book);
         }
+        
+       
     }
 }
