@@ -37,7 +37,8 @@ namespace Test.DataGenerator
             dataContext.Authors.Add(author2);
 
             Book book1 = new Book("The Great Gatsby", author1, BookGenres.fiction);
-            Book book2 = new Book("The Great Gatsby", author2, BookGenres.fantasy);
+            Book book2 = new Book("Sapiens", author2, BookGenres.fantasy);
+            Book book3 = new Book("ABC", author2, BookGenres.mystery);
 
             dataContext.Books.Add(book1.Id, book1);
             dataContext.Books.Add(book2.Id, book2);
