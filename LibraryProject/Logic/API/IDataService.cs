@@ -23,7 +23,7 @@ namespace Logic.API
         public void DeleteEvent(Data.Library.Events.EventAbstract eventAbstract);
 
         public void BorrowBook(string bookId, string customerId);
-        public void ReturnBook(string bookId, int fee, string customerId);
+        public void ReturnBook(Book book, Customer customer, int fee = 0);
 
     }
 }
