@@ -8,6 +8,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{7E4872A7-7AAF-44C2-94FF-AA87C3F044D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{E08D578C-88FC-4141-BE21-5C72B635FF63}"
+	ProjectSection(ProjectDependencies) = postProject
+		{14E9E488-EA8E-4C54-AA0E-EC34CBE206BA} = {14E9E488-EA8E-4C54-AA0E-EC34CBE206BA}
+		{7E4872A7-7AAF-44C2-94FF-AA87C3F044D2} = {7E4872A7-7AAF-44C2-94FF-AA87C3F044D2}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
