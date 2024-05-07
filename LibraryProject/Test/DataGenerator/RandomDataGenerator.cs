@@ -8,9 +8,11 @@ namespace Test.DataGenerator
 {
     public class RandomDataGenerator : IDataGenerator
     {
-        public void GenerateData()
+        private int numberOfCustomers = 3;
+        private int numberOfBooks = 5;
+        public void GenerateData(ref Data.Library.DataContext dataContext)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
