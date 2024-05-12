@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Data.Library.Events;
+using Data.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Reflection.Metadata.BlobBuilder;
 
-namespace Data
+namespace Data.Library
 {
-    internal class DataRepository : IDataRepository
+    internal class DataRepository : API.IDataRepository
     {
         public DataContext dataContext = new DataContext();
 

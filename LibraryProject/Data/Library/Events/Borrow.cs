@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Library.Events
+namespace Data
 {
-    public class Borrow : EventAbstract
+    internal class Borrow : EventAbstract
     {
       public DateTime FreeReturnDate { get; set; }
 

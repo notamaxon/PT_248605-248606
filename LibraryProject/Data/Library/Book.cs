@@ -5,16 +5,16 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Library
+namespace Data
 {
-    public class Book
+    internal class Book
     {
         public string Id { get; set; }
         public string Title { get; set; }
-        public Users.User Author { get; set; }
+        public User Author { get; set; }
         public BookGenres Genre { get; set; }
 
-        public Book(string title, Users.User author, BookGenres genre) { 
+        public Book(string title, User author, BookGenres genre) { 
             Id = Guid.NewGuid().ToString();
             Title = title;
             Author = author;    
@@ -26,7 +26,7 @@ namespace Data.Library
             Id = string.Empty;
             Genre = BookGenres.none;
             Title = string.Empty;
-            Author = new Users.Author();
+            Author = new Author();
         }
     }
 

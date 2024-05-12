@@ -4,22 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Library
+namespace Data
 {
-    public class DataContext
+    internal class DataContext
     {
-        public List<Users.Customer> Customers { get; set; }
+        public List<Customer> Customers { get; set; }
         public Dictionary<string, Book> Books { get; set; }
-        public List<Users.Author> Authors { get; set; }
-        public List<Events.EventAbstract> Events { get; set; }
+        public List<Author> Authors { get; set; }
+        public List<EventAbstract> Events { get; set; }
 
         public List<State> States { get; set; }
 
         public DataContext() { 
-            Authors = new List<Users.Author>();
-            Customers = new List<Users.Customer>();
+            Authors = new List<Author>();
+            Customers = new List<Customer>();
             Books = new Dictionary<string, Book>();    
-            Events = new List<Events.EventAbstract>();
+            Events = new List<EventAbstract>();
             States = new List<State> { };
 
         }

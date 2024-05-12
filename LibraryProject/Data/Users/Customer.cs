@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Users
+namespace Data  
 {
-    public class Customer : User
+    internal class Customer : User
     {
         public string Adress {  get; set; }
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Library
+namespace Data
 {
-    public class State
+    internal class State
     {
         public string Id { get; set; }
         public DateTime Date { get; set; }
