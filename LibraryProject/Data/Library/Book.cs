@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    internal class Book
+    internal class Book : IBook
     {
         public string Id { get; set; }
         public string Title { get; set; }

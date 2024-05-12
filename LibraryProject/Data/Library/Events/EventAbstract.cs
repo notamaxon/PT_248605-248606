@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    internal abstract class EventAbstract
+    public abstract class EventAbstract
     {
         public DateTime EventDate { get; set; }
         public State State { get; set; }
