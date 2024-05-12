@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Library.Events
+namespace Data
 {
-    public class Return : EventAbstract
+    internal class Return : EventAbstract
     {
         public int Fee {  get; set; }
 
