@@ -10,7 +10,7 @@ namespace Data
     {
         public int Fee {  get; set; }
 
-        public Return(State state, int fee) : base(state) { 
+        public Return(IState state, int fee=0) : base(state) { 
         {
             Fee = fee;
         }

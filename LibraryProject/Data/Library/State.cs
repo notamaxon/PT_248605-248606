@@ -10,7 +10,7 @@ namespace Data
     {
         public string Id { get; set; }
         public DateTime Date { get; set; }
-        public Book Book { get; set; }
+        public IBook Book { get; set; }
         public StateType Availability { get; set; } = StateType.Unknown;
 
 
@@ -20,7 +20,7 @@ namespace Data
             Book = new Book();
             Availability = StateType.Unknown;
         }
-        public State(Book book, StateType availability)
+        public State(IBook book, StateType availability)
         {
             Id = Guid.NewGuid().ToString();
             Date = DateTime.Now;

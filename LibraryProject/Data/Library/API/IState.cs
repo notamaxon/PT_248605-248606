@@ -10,7 +10,7 @@ namespace Data
     {
         public string Id { get; set; }
         public DateTime Date { get; set; }
-        public Book Book { get; set; }
+        public IBook Book { get; set; }
         public StateType Availability { get; set; }
 
     }

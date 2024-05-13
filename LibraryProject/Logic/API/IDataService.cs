@@ -4,26 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data;
-using Data.Library;
-using Data.Users;
 
 namespace Logic.API
 {
     public interface IDataService
     {
 
-        public void AddBook(Book book);
-        public void DeleteBook(Book book);
+        public void AddBook(IBook book);
+        public void DeleteBook(IBook book);
         public void GetBook(string id);
 
-        public void AddCustomer(Customer customer);
-        public void DeleteCustomer(Customer customer);
+        public void AddCustomer(User customer);
+        public void DeleteCustomer(User customer);
 
-        public void AddEvent(Data.Library.Events.EventAbstract eventAbstract);
-        public void DeleteEvent(Data.Library.Events.EventAbstract eventAbstract);
+        public void AddEvent(EventAbstract eventAbstract);
+        public void DeleteEvent(EventAbstract eventAbstract);
 
         public void BorrowBook(string bookId, string customerId);
-        public void ReturnBook(Book book, Customer customer, int fee = 0);
+        public void ReturnBook(IBook book, User customer, int fee = 0);
 
     }
 }

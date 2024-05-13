@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public class Author : User
+    internal class Author : User
     {     
         public string Information { get; set; }
 

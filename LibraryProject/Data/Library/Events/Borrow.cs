@@ -10,7 +10,7 @@ namespace Data
     {
       public DateTime FreeReturnDate { get; set; }
 
-        public Borrow(State state) : base(state)
+        public Borrow(IState state) : base(state)
         {
             FreeReturnDate = EventDate.AddDays(60);
         }

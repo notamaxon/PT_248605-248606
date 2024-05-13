@@ -8,19 +8,19 @@ namespace Data
 {
     internal class DataContext : IDataContext
     {
-        public List<Customer> Customers { get; set; }
-        public Dictionary<string, Book> Books { get; set; }
-        public List<Author> Authors { get; set; }
+        public List<User> Customers { get; set; }
+        public Dictionary<string, IBook> Books { get; set; }
+        public List<User> Authors { get; set; }
         public List<EventAbstract> Events { get; set; }
 
-        public List<State> States { get; set; }
+        public List<IState> States { get; set; }
 
         public DataContext() { 
-            Authors = new List<Author>();
-            Customers = new List<Customer>();
-            Books = new Dictionary<string, Book>();    
+            Authors = new List<User>();
+            Customers = new List<User>();
+            Books = new Dictionary<string, IBook>();    
             Events = new List<EventAbstract>();
-            States = new List<State> { };
+            States = new List<IState> { };
 
         }
     }

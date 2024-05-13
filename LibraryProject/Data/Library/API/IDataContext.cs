@@ -8,10 +8,10 @@ namespace Data
 {
     public interface IDataContext
     {
-        public List<Customer> Customers { get; set; }
-        public Dictionary<string, Book> Books { get; set; }
-        public List<Author> Authors { get; set; }
+        public List<User> Customers { get; set; }
+        public Dictionary<string, IBook> Books { get; set; }
+        public List<User> Authors { get; set; }
         public List<EventAbstract> Events { get; set; }
-        public List<State> States { get; set; }
+        public List<IState> States { get; set; }
     }
 }

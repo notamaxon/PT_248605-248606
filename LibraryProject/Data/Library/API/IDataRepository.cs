@@ -10,23 +10,23 @@ namespace Data
     {
 
         // Customer
-        void AddCustomer(Customer customer);
-        void DeleteCustomer(Customer customer);
-        Customer GetCustomer(string id);
-        List<Customer> GetAllCustomers();
+        void AddCustomer(User customer);
+        void DeleteCustomer(User customer);
+        User GetCustomer(string id);
+        List<User> GetAllCustomers();
 
         // Book
-        void AddBook(Book book);
-        void DeleteBook(Book book);
-        Book GetBook(string id);
-        Dictionary<string, Book> GetAllBooks();
+        void AddBook(IBook book);
+        void DeleteBook(IBook book);
+        IBook GetBook(string id);
+        Dictionary<string, IBook> GetAllBooks();
 
         // State
 
-        void AddState(State state); 
-        void DeleteState(State state);
-        State GetState(string id); 
-        List<State> GetAllState();
+        void AddState(IState state); 
+        void DeleteState(IState state);
+        IState GetState(string id); 
+        List<IState> GetAllState();
 
 
         // Event
@@ -37,10 +37,10 @@ namespace Data
         List<EventAbstract> GetAllEvents();
 
         // Author
-        void AddAuthor (Author author);
-        Author GetAuthor(string id);
-        void DeleteAuthor(Author author);
-        List<Author> GetAllAuthor();
+        void AddAuthor (User author);
+        User GetAuthor(string id);
+        void DeleteAuthor(User author);
+        List<User> GetAllAuthor();
         
 
     }

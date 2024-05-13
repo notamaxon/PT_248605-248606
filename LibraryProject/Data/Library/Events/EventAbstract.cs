@@ -9,12 +9,12 @@ namespace Data
     public abstract class EventAbstract
     {
         public DateTime EventDate { get; set; }
-        public State State { get; set; }
+        public IState State { get; set; }
         public string Id { get; set; }
-        public Customer Customer { get; set; }  
+        public User Customer { get; set; }  
 
 
-        public EventAbstract(State state) {
+        public EventAbstract(IState state) {
             EventDate = DateTime.Now;
             State = state;
             Id = Guid.NewGuid().ToString();

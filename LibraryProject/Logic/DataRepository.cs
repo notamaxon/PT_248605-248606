@@ -1,31 +1,30 @@
-﻿using Data.Library.Events;
-using Data.Users;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Reflection.Metadata.BlobBuilder;
 
-namespace Data.Library
+namespace Data
 {
-    internal class DataRepository : API.IDataRepository
+    internal class DataRepository : IDataRepository
     {
-        public DataContext dataContext = new DataContext();
+        public IDataContext dataContext = AbstractBuilder.BuildDataContext();
 
-        public void AddAuthor(Author author)
+        public void AddAuthor(User author)
         {
-            if (!(dataContext.Authors.Contains(author))) {
+            if (!dataContext.Authors.Contains(author))
+            {
                 dataContext.Authors.Add(author);
             }
         }
 
-        public void AddBook(Book book)
+        public void AddBook(IBook book)
         {
             dataContext.Books.Add(book.Id, book);
         }
 
-        public void AddCustomer(Customer customer)
+        public void AddCustomer(User customer)
         {
             if (!(dataContext.Customers.Contains(customer)))
             {
@@ -38,57 +37,62 @@ namespace Data.Library
             dataContext.Events.Add(eventAbstract);
         }
 
-        public void AddState(State state)
+        public void AddState(IState state)
         {
             dataContext.States.Add(state);
         }
 
-        public void DeleteAuthor(Author author)
+        public void DeleteAuthor(User author)
         {
-            if (dataContext.Authors.Contains(author)) {
+            if (dataContext.Authors.Contains(author))
+            {
                 dataContext.Authors.Remove(author);
             }
         }
 
-        public void DeleteBook(Book book)
+        public void DeleteBook(IBook book)
         {
-            if (dataContext.Books.ContainsKey(book.Id)) {
+            if (dataContext.Books.ContainsKey(book.Id))
+            {
                 dataContext.Books.Remove(book.Id, out book);
             }
         }
 
-        public void DeleteCustomer(Customer customer)
+        public void DeleteCustomer(User customer)
         {
-            if (dataContext.Customers.Contains(customer)) {
+            if (dataContext.Customers.Contains(customer))
+            {
                 dataContext.Customers.Remove(customer);
             }
         }
 
         public void DeleteEvent(EventAbstract eventAbstract)
         {
-            if (dataContext.Events.Contains(eventAbstract)) {
-                dataContext.Events.Remove(eventAbstract);   
+            if (dataContext.Events.Contains(eventAbstract))
+            {
+                dataContext.Events.Remove(eventAbstract);
             }
         }
 
-        public void DeleteState(State state)
+        public void DeleteState(IState state)
         {
-            if (dataContext.States.Contains(state)) { 
+            if (dataContext.States.Contains(state))
+            {
                 dataContext.States.Remove(state);
             }
         }
 
-        public List<Author> GetAllAuthor()
+        public List<User> GetAllAuthor()
         {
             return dataContext.Authors;
         }
 
-        public Dictionary<string, Book> GetAllBooks()
+        public Dictionary<string, IBook> GetAllBooks()
         {
             return dataContext.Books;
         }
 
-        public List<Customer> GetAllCustomers()
+        public List<User> GetAllCustomers()
         {
             return dataContext.Customers;
         }
@@ -98,14 +102,14 @@ namespace Data.Library
             return dataContext.Events;
         }
 
-        public List<State> GetAllState()
+        public List<IState> GetAllState()
         {
             return dataContext.States;
         }
 
-        public Author GetAuthor(string id)
+        public User GetAuthor(string id)
         {
-            var result = new Author();
+            User result = null;
             foreach (var x in dataContext.Authors)
             {
                 if (x.Id == id)
@@ -117,16 +121,16 @@ namespace Data.Library
             return result;
         }
 
-        public Book GetBook(string id)
+        public IBook GetBook(string id)
         {
             return dataContext.Books[id];
         }
 
-        public Customer GetCustomer(string id)
+        public User GetCustomer(string id)
         {
-            var result = new Customer();
-            foreach(var x in dataContext.Customers)
-{
+            User result = null;
+            foreach (var x in dataContext.Customers)
+            {
                 if (x.Id == id)
                 {
                     result = x;
@@ -148,12 +152,12 @@ namespace Data.Library
                 }
             }
             return null;
-            
+
         }
 
-        public State GetState(string id)
+        public IState GetState(string id)
         {
-            var result = new State();
+            IState result = null;
             foreach (var x in dataContext.States)
             {
                 if (x.Id == id)
@@ -164,6 +168,6 @@ namespace Data.Library
             }
             return result;
         }
-        
+
     }
 }

@@ -1,7 +1,4 @@
-﻿using Data.Library;
-using Data.Library.API;
-using Data.Library.Events;
-using Data.Users;
+﻿using Data;
 using Logic.API;
 using System;
 using System.Collections.Generic;
@@ -28,12 +25,12 @@ namespace Logic
 
       
 
-        void IDataService.AddBook(Book book)
+        void IDataService.AddBook(IBook book)
         {
             Repository.AddBook(book);  
         }
 
-        void IDataService.DeleteBook(Book book)
+        void IDataService.DeleteBook(IBook book)
         {
             Repository.DeleteBook(book);
         }
@@ -43,12 +40,12 @@ namespace Logic
             Repository.GetAllBooks();
         }
 
-        void IDataService.AddCustomer(Customer customer)
+        void IDataService.AddCustomer(User customer)
         {
             Repository.AddCustomer(customer);
         }
 
-        void IDataService.DeleteCustomer(Customer customer)
+        void IDataService.DeleteCustomer(User customer)
         {
             Repository.DeleteCustomer(customer);
         }
@@ -65,10 +62,10 @@ namespace Logic
 
         void IDataService.BorrowBook(string bookId, string customerId)
         {
-            Book book = Repository.GetBook(bookId);
-            Customer customer = Repository.GetCustomer(customerId);
-            State state = new State(book, StateType.taken);
-            Borrow bookBorrow = new Borrow(state);
+            var book = Repository.GetBook(bookId);
+            var customer = Repository.GetCustomer(customerId);
+            var state = AbstractBuilder.BuildState(book, StateType.taken);
+            var bookBorrow = AbstractBuilder.BuildBorrow(state);
 
         
             Repository.AddEvent(bookBorrow);
@@ -76,10 +73,10 @@ namespace Logic
             Repository.DeleteBook(book);
         }
 
-        void IDataService.ReturnBook(Book book, Customer customer, int fee = 0)
+        void IDataService.ReturnBook(IBook book, User customer, int fee = 0)
         {
-            State state = new State(book, StateType.available);
-            Return returnBook = new Return(state, fee);
+            var state = AbstractBuilder.BuildState(book, StateType.available);
+            var returnBook = AbstractBuilder.BuildReturn(state, fee);
 
             Repository.AddEvent(returnBook);
             Repository.AddState(state);
