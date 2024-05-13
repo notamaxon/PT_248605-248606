@@ -3,21 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Data;
+using Logic;
 
-namespace Test.DataGenerator
+namespace LogicTest.DataGenerator
 {
+    public enum BookGenres
+    {
+        none,
+        horror,
+        mystery,
+        thriller,
+        fantasy,
+        adventure,
+        fiction,
+        romance,
+    }
     public class RandomDataGenerator : IDataGenerator
     {
         private int numberOfCustomers = 3;
         private int numberOfBooks = 5;
         private int numberOfAuthors = 2;
-        public void GenerateData(ref Data.IDataRepository dataRepository)
+        public void GenerateData(ref Logic.DataRepository dataRepository)
         {
             Random random = new Random();
             for (int i = 0; i < numberOfCustomers; i++)
             {
-                var customer = AbstractBuilder.BuildCustomer(random.Next(10000, 100000).ToString(),
+                var customer = Builder.BuildCustomer(random.Next(10000, 100000).ToString(),
                                                              random.Next(10000, 100000).ToString(),
                                                              random.Next(10000, 100000).ToString(),
                                                              random.Next(10000, 100000).ToString(),
@@ -28,7 +39,7 @@ namespace Test.DataGenerator
 
             for (int i = 0; i < numberOfAuthors; i++)
             {
-                var author = AbstractBuilder.BuildAuthor(random.Next(10000, 100000).ToString(),
+                var author = Builder.BuildAuthor(random.Next(10000, 100000).ToString(),
                                                          random.Next(10000, 100000).ToString(),
                                                          random.Next(10000, 100000).ToString(),
                                                          random.Next(10000, 100000).ToString(),
@@ -39,7 +50,7 @@ namespace Test.DataGenerator
             }
 
             for (int i = 0;i < numberOfBooks;i++) {
-                var book = AbstractBuilder.BuildBook();
+                var book = Builder.BuildBook();
                 book.Author = dataRepository.GetAllAuthor()[random.Next(0, dataRepository.GetAllAuthor().Count)];
                 Array genreValues = Enum.GetValues(typeof(Data.BookGenres));
                 book.Genre = (Data.BookGenres)genreValues.GetValue(random.Next(genreValues.Length));

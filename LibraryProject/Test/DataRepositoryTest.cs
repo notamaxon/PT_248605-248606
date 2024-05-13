@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Data.Library;
-using Data.Users;
-using Data.Library.Events;
+using Data;
 using System.Collections.Generic;
 
 namespace Data.Tests

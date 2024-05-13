@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Reflection.Metadata.BlobBuilder;
 
-namespace Logic
+namespace DataTest
 {
-    public class DataRepository : Data.IDataRepository
+    internal class DataRepository : Data.IDataRepository
     {
         public Data.IDataContext dataContext = Data.AbstractBuilder.BuildDataContext();
 

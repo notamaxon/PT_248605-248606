@@ -10,7 +10,7 @@ using Data;
 using Microsoft.VisualBasic;
 using static System.Formats.Asn1.AsnWriter;
 
-namespace Test.DataGenerator
+namespace DataTest.DataGenerator
 {
     public class ManualDataGenerator : IDataGenerator
     {

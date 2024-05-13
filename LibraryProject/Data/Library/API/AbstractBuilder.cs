@@ -12,12 +12,19 @@ namespace Data
             Book book = new Book(title, author, genre);
             return book;
         }
+
+        public static IBook BuildBook() { 
+            return new Book();
+        }
         public static IState BuildState(IBook book, StateType availability)
         {
             State state = new State(book, availability);
             return state;
         }
-
+        public static IState BuildState()
+        {
+            return new State();
+        }
         public static IDataContext BuildDataContext() { 
             return new DataContext();
         }
@@ -27,11 +34,18 @@ namespace Data
             return customer;
         }
 
+        public static User BuildCustomer()
+        {
+            return new Customer();
+        }
         public static User BuildAuthor(string name, string surname, string email, string phone, string information) {
             Author author = new Author(name, surname, email, phone, information);
             return author;
         }
 
+        public static User BuildAuthor() { 
+            return new Author();
+        }
         public static EventAbstract BuildBorrow(IState state) { 
             return new Borrow(state);
         }

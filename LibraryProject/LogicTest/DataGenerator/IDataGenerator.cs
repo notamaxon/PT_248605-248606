@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test.DataGenerator
+namespace LogicTest.DataGenerator
 {
     public interface IDataGenerator
     {
-        void GenerateData(ref Data.IDataRepository dataRepository);
+        void GenerateData(ref Logic.DataRepository dataRepository);
     }
 }
