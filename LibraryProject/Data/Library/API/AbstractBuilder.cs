@@ -8,7 +8,7 @@ namespace Data
 {
     public abstract class AbstractBuilder
     {
-        public static IBook BuildBook(string title, User author, BookGenres genre) { 
+        public static IBook BuildBook(string title, string author, BookGenres genre) { 
             Book book = new Book(title, author, genre);
             return book;
         }
@@ -38,14 +38,7 @@ namespace Data
         {
             return new Customer();
         }
-        public static User BuildAuthor(string name, string surname, string email, string phone, string information) {
-            Author author = new Author(name, surname, email, phone, information);
-            return author;
-        }
 
-        public static User BuildAuthor() { 
-            return new Author();
-        }
         public static EventAbstract BuildBorrow(IState state) { 
             return new Borrow(state);
         }

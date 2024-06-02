@@ -11,10 +11,10 @@ namespace Data
     {
         public string Id { get; set; }
         public string Title { get; set; }
-        public User Author { get; set; }
+        public string Author { get; set; }
         public BookGenres Genre { get; set; }
 
-        public Book(string title, User author, BookGenres genre) { 
+        public Book(string title, string author, BookGenres genre) { 
             Id = Guid.NewGuid().ToString();
             Title = title;
             Author = author;    
@@ -26,7 +26,7 @@ namespace Data
             Id = string.Empty;
             Genre = BookGenres.none;
             Title = string.Empty;
-            Author = new Author();
+            Author = string.Empty;
         }
     }
 
