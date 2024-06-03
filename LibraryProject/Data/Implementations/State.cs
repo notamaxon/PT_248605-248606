@@ -4,23 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data
+namespace Data.Implementations
 {
-    internal class State : IState
+    internal class State : API.IState
     {
         public string Id { get; set; }
         public DateTime Date { get; set; }
-        public IBook Book { get; set; }
-        public StateType Availability { get; set; } = StateType.Unknown;
+        public API.IBook Book { get; set; }
+        public API.StateType Availability { get; set; } = API.StateType.Unknown;
 
 
         public State() {
             Id = string.Empty;
             Date = DateTime.Now;
             Book = new Book();
-            Availability = StateType.Unknown;
+            Availability = API.StateType.Unknown;
         }
-        public State(IBook book, StateType availability)
+        public State(API.IBook book, API.StateType availability)
         {
             Id = Guid.NewGuid().ToString();
             Date = DateTime.Now;
@@ -30,9 +30,5 @@ namespace Data
     }
 
 
-    public enum StateType {
-        Unknown,
-        available,
-        taken,
-    }
+    
 }

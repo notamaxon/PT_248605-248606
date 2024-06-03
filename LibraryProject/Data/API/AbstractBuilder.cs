@@ -4,48 +4,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data
+namespace Data.API
 {
     public abstract class AbstractBuilder
     {
         public static IBook BuildBook(string title, string author, BookGenres genre) { 
-            Book book = new Book(title, author, genre);
+            Implementations.Book book = new Implementations.Book(title, author, genre);
             return book;
         }
 
         public static IBook BuildBook() { 
-            return new Book();
+            return new Implementations.Book();
         }
         public static IState BuildState(IBook book, StateType availability)
         {
-            State state = new State(book, availability);
+            Implementations.State state = new Implementations.State(book, availability);
             return state;
         }
         public static IState BuildState()
         {
-            return new State();
+            return new Implementations.State();
         }
         public static IDataContext BuildDataContext() { 
-            return new DataContext();
+            return new Implementations.DataContext();
         }
 
-        public static User BuildCustomer(string name, string surname, string email, string phone, string adress) { 
-            Customer customer = new Customer(name, surname, email, phone, adress);
+        public static IUser BuildCustomer(string name, string email, string phone) { 
+            Implementations.User customer = new Implementations.User(name, email, phone);
             return customer;
         }
 
-        public static User BuildCustomer()
+        public static IUser BuildCustomer()
         {
-            return new Customer();
+            return new Implementations.User();
         }
 
         public static EventAbstract BuildBorrow(IState state) { 
-            return new Borrow(state);
+            return new Implementations.Borrow(state);
         }
 
         public static EventAbstract BuildReturn(IState state, int fee = 0)
         {
-            return new Return(state, fee);
+            return new Implementations.Return(state, fee);
         }
 
     }

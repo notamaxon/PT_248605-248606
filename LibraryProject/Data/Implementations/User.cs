@@ -4,37 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data
+namespace Data.Implementations
 {
-    public abstract class User
+    internal class User : API.IUser
     {
         public string Id { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Name { get; set; }
-        public string Surname { get; set; }
 
-        public User(string name, string surname, string email, string phone) {
-
+        public User(string name, string email, string phone)
+        {
             Id = Guid.NewGuid().ToString();
             Name = name;
-            Surname = surname;
             Email = email;
             Phone = phone;
 
-       }
-        
-        public User() { 
+        }
+
+        public User()
+        {
             Id = string.Empty;
             Email = string.Empty;
             Phone = string.Empty;
             Name = string.Empty;
-            Surname = string.Empty;
             Email = string.Empty;
             Phone = string.Empty;
-        }   
-
+        }
     }
-
-
 }

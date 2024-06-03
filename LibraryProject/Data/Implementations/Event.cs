@@ -1,24 +1,25 @@
-﻿using System;
+﻿using Data.API;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data
+namespace Data.Implementations
 {
-    public abstract class EventAbstract
+    internal class Event : API.IEvent
     {
         public DateTime EventDate { get; set; }
         public IState State { get; set; }
         public string Id { get; set; }
-        public User Customer { get; set; }  
+        public IUser Customer { get; set; }
 
 
-        public EventAbstract(IState state) {
+        public Event(IState state)
+        {
             EventDate = DateTime.Now;
             State = state;
             Id = Guid.NewGuid().ToString();
         }
-
     }
 }

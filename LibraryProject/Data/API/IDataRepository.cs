@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data
+namespace Data.API
 {
     public interface IDataRepository
     {
 
         // Customer
-        void AddCustomer(User customer);
-        void DeleteCustomer(User customer);
-        User GetCustomer(string id);
-        List<User> GetAllCustomers();
+        void AddCustomer(IUser customer);
+        void DeleteCustomer(IUser customer);
+        IUser GetCustomer(string id);
+        List<IUser> GetAllCustomers();
 
         // Book
         void AddBook(IBook book);
@@ -35,12 +35,6 @@ namespace Data
         void DeleteEvent(EventAbstract eventAbstract);
         EventAbstract GetEvent(string id);
         List<EventAbstract> GetAllEvents();
-
-        // Author
-        void AddAuthor (User author);
-        User GetAuthor(string id);
-        void DeleteAuthor(User author);
-        List<User> GetAllAuthor();
         
 
     }

@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data
+namespace Data.API
 {
-    public interface IBook
+    public interface IUser 
     {
         public string Id { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public BookGenres Genre { get; set; }
-
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Name { get; set; }
     }
 }

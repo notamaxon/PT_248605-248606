@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data
+namespace Data.API
 {
     public interface IState
     {
@@ -13,5 +13,11 @@ namespace Data
         public IBook Book { get; set; }
         public StateType Availability { get; set; }
 
+    }
+    public enum StateType
+    {
+        Unknown,
+        available,
+        taken,
     }
 }
