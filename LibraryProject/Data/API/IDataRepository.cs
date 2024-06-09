@@ -8,34 +8,38 @@ namespace Data.API
 {
     public interface IDataRepository
     {
+        // Customer CRUD
+        Task AddCustomerAsync(IUser customer);
+        Task DeleteCustomerAsync(string id);
+        Task<IUser> GetCustomerAsync(string id);
+        Task<List<IUser>> GetAllCustomersAsync();
+        Task<int> GetCustomersCountAsync();
 
-        // Customer
-        void AddCustomer(IUser customer);
-        void DeleteCustomer(IUser customer);
-        IUser GetCustomer(string id);
-        List<IUser> GetAllCustomers();
+        // Book CRUD
+        Task AddBookAsync(IBook book);
+        Task DeleteBookAsync(string id);
+        Task<IBook> GetBookAsync(string id);
+        Task<Dictionary<string, IBook>> GetAllBooksAsync();
+        Task<int> GetBooksCountAsync();
 
-        // Book
-        void AddBook(IBook book);
-        void DeleteBook(IBook book);
-        IBook GetBook(string id);
-        Dictionary<string, IBook> GetAllBooks();
+        // State CRUD
+        Task AddStateAsync(IState state);
+        Task DeleteStateAsync(string id);
+        Task<IState> GetStateAsync(string id);
+        Task<List<IState>> GetAllStatesAsync();
+        Task<int> GetStatesCountAsync();
 
-        // State
+        // Event CRUD
+        Task AddEventAsync(IEvent eventAbstract);
+        Task DeleteEventAsync(string id);
+        Task<IEvent> GetEventAsync(string id);
+        Task<List<IEvent>> GetAllEventsAsync();
+        Task<int> GetEventsCountAsync();
 
-        void AddState(IState state); 
-        void DeleteState(IState state);
-        IState GetState(string id); 
-        List<IState> GetAllState();
-
-
-        // Event
-
-        void AddEvent(EventAbstract eventAbstract);
-        void DeleteEvent(EventAbstract eventAbstract);
-        EventAbstract GetEvent(string id);
-        List<EventAbstract> GetAllEvents();
-        
-
+        // Utils
+        Task<bool> CheckIfCustomerExistsAsync(string id);
+        Task<bool> CheckIfBookExistsAsync(string id);
+        Task<bool> CheckIfStateExistsAsync(string id);
+        Task<bool> CheckIfEventExistsAsync(string id);
     }
 }
