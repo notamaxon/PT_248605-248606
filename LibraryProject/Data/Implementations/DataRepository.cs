@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.API;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,10 @@ namespace Data.Implementations
     {
         public API.IDataContext dataContext = API.AbstractBuilder.BuildDataContext();
 
+        public DataRepository(IDataContext dataContext)
+        {
+            this.dataContext = dataContext;
+        }
 
         public void AddBook(API.IBook book)
         {
@@ -25,7 +30,7 @@ namespace Data.Implementations
             }
         }
 
-        public void AddEvent(API.EventAbstract eventAbstract)
+        public void AddEvent(API.IEvent eventAbstract)
         {
             dataContext.Events.Add(eventAbstract);
         }
@@ -52,7 +57,7 @@ namespace Data.Implementations
             }
         }
 
-        public void DeleteEvent(API.EventAbstract eventAbstract)
+        public void DeleteEvent(API.IEvent eventAbstract)
         {
             if (dataContext.Events.Contains(eventAbstract))
             {
@@ -79,7 +84,7 @@ namespace Data.Implementations
             return dataContext.Customers;
         }
 
-        public List<API.EventAbstract> GetAllEvents()
+        public List<API.IEvent> GetAllEvents()
         {
             return dataContext.Events;
         }
@@ -110,9 +115,9 @@ namespace Data.Implementations
             return result;
         }
 
-        public API.EventAbstract GetEvent(string id)
+        public API.IEvent GetEvent(string id)
         {
-            API.EventAbstract result;
+            API.IEvent result;
             foreach (var x in dataContext.Events)
             {
                 if (x.Id == id)
