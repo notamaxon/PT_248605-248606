@@ -113,7 +113,7 @@ namespace Data.Database
 		
 		private string _Author;
 		
-		private int _Genre;
+		private string _Genre;
 		
 		private EntitySet<State> _States;
 		
@@ -127,7 +127,7 @@ namespace Data.Database
     partial void OnTitleChanged();
     partial void OnAuthorChanging(string value);
     partial void OnAuthorChanged();
-    partial void OnGenreChanging(int value);
+    partial void OnGenreChanging(string value);
     partial void OnGenreChanged();
     #endregion
 		
@@ -197,8 +197,8 @@ namespace Data.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genre", DbType="Int NOT NULL")]
-		public int Genre
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genre", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Genre
 		{
 			get
 			{

@@ -11,7 +11,7 @@ namespace Data.Implementation
         public string Id { get; set; }
         public DateTime Date { get; set; }
         public string BookId { get; set; }
-        public bool Availability { get; set; };
+        public bool Availability { get; set; }
 
 
         public State() {
