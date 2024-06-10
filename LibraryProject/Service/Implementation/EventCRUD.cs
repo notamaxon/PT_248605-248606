@@ -19,7 +19,7 @@ namespace Service.Implementation
 
          private IEventDTO Map(IEvent even)
         {
-            return new EventDTO(even.Id, even.StateId, even.CustomerId, even.EventDate, even.Type);
+            return new EventDTO(even.Id, even.StateId, even.CustomerId, even.Type, even.EventDate);
         }
 
         public async Task AddEventAsync(string id, string stateid, string customerid, string type = "")

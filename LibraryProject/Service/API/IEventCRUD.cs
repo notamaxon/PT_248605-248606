@@ -15,11 +15,11 @@ namespace Service.API
             return new EventCRUD(dataRepository ?? IDataRepository.CreateDatabase());
         }
 
-        Task AddEventAsync(string id, string stateid, string customerid);
+        Task AddEventAsync(string id, string stateid, string customerid, string type);
 
         Task<IEventDTO> GetEventAsync(string id);
 
-        Task UpdateEventAsync(string id, DateTime eventdate, string stateid, string customerid);
+        Task UpdateEventAsync(string id, DateTime eventdate, string stateid, string customerid, string type);
 
         Task DeleteEventAsync(string id);
 

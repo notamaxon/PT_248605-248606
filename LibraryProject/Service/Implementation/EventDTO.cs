@@ -9,14 +9,15 @@ namespace Service.Implementation
 {
     internal class EventDTO : IEventDTO
     {
-        private object type;
+        
 
         public DateTime EventDate { get; set; }
         public string StateId { get; set; }
         public string Id { get; set; }
         public string CustomerId { get; set; }
+        public string Type { get; set; }
 
-        public EventDTO(DateTime eventdate, string stateid, string id, string customerid)
+        public EventDTO(string stateid, string id, string customerid, string type, DateTime eventdate)
         {
             this.EventDate = eventdate;
             this.StateId = stateid;

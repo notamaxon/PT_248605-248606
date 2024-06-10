@@ -12,6 +12,7 @@ namespace Service.API
         public string StateId { get; set; }
         public string Id { get; set; }
         public string CustomerId { get; set; }
+        public string Type { get; set; }
 
 
     }
