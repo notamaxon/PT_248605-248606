@@ -30,11 +30,11 @@ namespace Data.API
         Task<string> GetUsersCountAsync();
 
         // Book CRUD
-        Task AddBookAsync(string id, string title, string author, BookGenres genre);
+        Task AddBookAsync(string id, string title, string author, string genre);
 
         Task<IBook> GetBookAsync(string id);
 
-        Task UpdateBookAsync(string id, string title, string author, BookGenres genre);
+        Task UpdateBookAsync(string id, string title, string author, string genre);
 
         Task DeleteBookAsync(string id);
 
@@ -43,11 +43,11 @@ namespace Data.API
         Task<string> GetBooksCountAsync();
 
         // State CRUD
-        Task AddStateAsync(string id, IBook book, StateType availability);
+        Task AddStateAsync(string id, string bookid, bool availability);
 
         Task<IState> GetStateAsync(string id);
 
-        Task UpdateStateAsync(int id, int productId, int productQuantity);
+        Task UpdateStateAsync(string id, string bookid, bool availability);
 
         Task DeleteStateAsync(string id);
 
@@ -57,11 +57,11 @@ namespace Data.API
 
 
         // Event CRUD
-        Task AddEventAsync(string id );
+        Task AddEventAsync(string id, string stateid, string customerid );
 
         Task<IEvent> GetEventAsync(string id);
 
-        Task UpdateEventAsync(string id, DateTime eventdate);
+        Task UpdateEventAsync(string id, DateTime eventdate, string stateid, string customerid);
 
         Task DeleteEventAsync(string id);
 
