@@ -10,7 +10,7 @@ namespace Service.API
 {
     public interface IBookCRUD
     {
-        static IBookCRUD CreateProductCRUD(IDataRepository? dataRepository = null)
+        static IBookCRUD CreateBookCRUD(IDataRepository? dataRepository = null)
         {
             return new BookCRUD(dataRepository ?? IDataRepository.CreateDatabase());
         }
