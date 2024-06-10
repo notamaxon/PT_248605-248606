@@ -18,6 +18,7 @@ namespace Data.Implementation
         public async Task AddUserAsync(string id, string email, string phone, string name)
         {
             IUser user = new User(name, email, phone);
+            user.Id = id;
             await _context.AddUserAsync(user);
         }
 
@@ -150,6 +151,28 @@ namespace Data.Implementation
                 throw new Exception("This state does not exist!");
 
             IEvent eventObj = new Event(stateid, customerid, type) { Id = id };
+
+            IState state = await GetStateAsync(stateid);
+            switch (type)
+            {
+                case "Borrow":
+                    if (!state.Availability)
+                        throw new Exception("This book is currently unavailable!");
+                    state.Availability = false;
+                    await UpdateStateAsync(state.Id, state.BookId, state.Availability);
+                    break;
+
+                case "Return":
+                    if (state.Availability)
+                        throw new Exception("This book is already marked as available!");
+                    state.Availability = true;
+                    await UpdateStateAsync(state.Id, state.BookId, state.Availability);
+                    break;
+
+                default:
+                    throw new Exception("This event type does not exist!");
+            }
+
             await _context.AddEventAsync(eventObj);
         }
 
