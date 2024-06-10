@@ -14,6 +14,7 @@
       <Column Name="EventDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="StateId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CustomerId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="State_Event" Member="State" ThisKey="StateId" OtherKey="Id" Type="State" IsForeignKey="true" />
       <Association Name="User_Event" Member="User" ThisKey="CustomerId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>

@@ -277,6 +277,8 @@ namespace Data.Database
 		
 		private string _CustomerId;
 		
+		private string _Type;
+		
 		private EntityRef<State> _State;
 		
 		private EntityRef<User> _User;
@@ -293,6 +295,8 @@ namespace Data.Database
     partial void OnStateIdChanged();
     partial void OnCustomerIdChanging(string value);
     partial void OnCustomerIdChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
     #endregion
 		
 		public Event()
@@ -386,6 +390,26 @@ namespace Data.Database
 					this._CustomerId = value;
 					this.SendPropertyChanged("CustomerId");
 					this.OnCustomerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
 				}
 			}
 		}

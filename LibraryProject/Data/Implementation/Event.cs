@@ -13,14 +13,15 @@ namespace Data.Implementation
         public string StateId { get; set; }
         public string Id { get; set; }
         public string CustomerId { get; set; }
+        public string Type { get; set; }
 
-
-        public Event(string stateId, string customerId)
+        public Event(string stateId, string customerId, string type)
         {
             EventDate = DateTime.Now;
             StateId = stateId;
             CustomerId = customerId;
             Id = Guid.NewGuid().ToString();
+            Type = type;
         }
     }
 }

@@ -265,7 +265,8 @@ namespace Data.Implementation
                     Id = even.Id,
                     EventDate = even.EventDate,
                     StateId = even.StateId,
-                    CustomerId = even.CustomerId
+                    CustomerId = even.CustomerId,
+                    Type = even.Type
                 };
 
                 context.Events.InsertOnSubmit(entity);
@@ -283,6 +284,7 @@ namespace Data.Implementation
                     toUpdate.EventDate = even.EventDate;
                     toUpdate.StateId = even.StateId;
                     toUpdate.CustomerId = even.CustomerId;
+                    toUpdate.Type = even.Type;
                     await Task.Run(() => context.SubmitChanges());
                 }
             }
@@ -306,7 +308,7 @@ namespace Data.Implementation
             using (var context = new DatabaseDataContext(_connectionString))
             {
                 var even = await Task.Run(() => (from e in context.Events where e.Id == id select e).FirstOrDefault());
-                return even != null ? new Event(even.StateId, even.CustomerId) { Id = even.Id, EventDate = even.EventDate } : null;
+                return even != null ? new Event(even.StateId, even.CustomerId, even.Type) { Id = even.Id, EventDate = even.EventDate } : null;
             }
         }
 
@@ -314,7 +316,7 @@ namespace Data.Implementation
         {
             using (var context = new DatabaseDataContext(_connectionString))
             {
-                var events = await Task.Run(() => (from e in context.Events select e).ToDictionary(e => e.Id, e => new Event(e.StateId, e.CustomerId) { Id = e.Id, EventDate = e.EventDate } as IEvent));
+                var events = await Task.Run(() => (from e in context.Events select e).ToDictionary(e => e.Id, e => new Event(e.StateId, e.CustomerId, e.Type) { Id = e.Id, EventDate = e.EventDate } as IEvent));
                 return events;
             }
         }
