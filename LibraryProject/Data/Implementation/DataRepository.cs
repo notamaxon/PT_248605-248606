@@ -1,148 +1,211 @@
-﻿using Data.API;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using static System.Reflection.Metadata.BlobBuilder;
+using Data.API;
 
 namespace Data.Implementation
 {
-    public class DataRepository : API.IDataRepository
+    internal class DataRepository : IDataRepository
     {
-        public API.IDataContext dataContext = API.AbstractBuilder.BuildDataContext();
+        private readonly IDataContext _context;
 
-        public DataRepository(IDataContext dataContext)
+        public DataRepository(IDataContext context)
         {
-            this.dataContext = dataContext;
+            _context = context;
         }
 
-        public void AddBook(API.IBook book)
+        #region User CRUD
+
+        public async Task AddUserAsync(string id, string email, string phone, string name)
         {
-            dataContext.Books.Add(book.Id, book);
+            IUser user = new User(name, email, phone) { Id = id };
+            await _context.AddUserAsync(user);
         }
 
-        public void AddCustomer(API.IUser customer)
+        public async Task<IUser> GetUserAsync(string id)
         {
-            if (!(dataContext.Customers.Contains(customer)))
-            {
-                dataContext.Customers.Add(customer);
-            }
+            IUser? user = await _context.GetUserAsync(id);
+
+            if (user is null)
+                throw new Exception("This user does not exist!");
+
+            return user;
         }
 
-        public void AddEvent(API.IEvent eventAbstract)
+        public async Task UpdateUserAsync(string id, string email, string phone, string name)
         {
-            dataContext.Events.Add(eventAbstract);
+            IUser user = new User(name, email, phone) { Id = id };
+
+            if (!await _context.CheckIfUserExistsAsync(user.Id))
+                throw new Exception("This user does not exist");
+
+            await _context.UpdateUserAsync(user);
         }
 
-        public void AddState(API.IState state)
+        public async Task DeleteUserAsync(string id)
         {
-            dataContext.States.Add(state);
+            if (!await _context.CheckIfUserExistsAsync(id))
+                throw new Exception("This user does not exist");
+
+            await _context.DeleteUserAsync(id);
         }
 
-
-        public void DeleteBook(API.IBook book)
+        public async Task<Dictionary<string, IUser>> GetAllUsersAsync()
         {
-            if (dataContext.Books.ContainsKey(book.Id))
-            {
-                dataContext.Books.Remove(book.Id, out book);
-            }
+            return await _context.GetAllUsersAsync();
         }
 
-        public void DeleteCustomer(API.IUser customer)
+        public async Task<string> GetUsersCountAsync()
         {
-            if (dataContext.Customers.Contains(customer))
-            {
-                dataContext.Customers.Remove(customer);
-            }
+            return await _context.GetUsersCountAsync();
         }
 
-        public void DeleteEvent(API.IEvent eventAbstract)
+        #endregion User CRUD
+
+        #region Book CRUD
+
+        public async Task AddBookAsync(string id, string title, string author, string genre)
         {
-            if (dataContext.Events.Contains(eventAbstract))
-            {
-                dataContext.Events.Remove(eventAbstract);
-            }
+            IBook book = new Book(title, author, genre.ToString()) { Id = id };
+            await _context.AddBookAsync(book);
         }
 
-        public void DeleteState(API.IState state)
+        public async Task<IBook> GetBookAsync(string id)
         {
-            if (dataContext.States.Contains(state))
-            {
-                dataContext.States.Remove(state);
-            }
+            IBook? book = await _context.GetBookAsync(id);
+
+            if (book is null)
+                throw new Exception("This book does not exist!");
+
+            return book;
         }
 
-
-        public Dictionary<string, API.IBook> GetAllBooks()
+        public async Task UpdateBookAsync(string id, string title, string author, string genre)
         {
-            return dataContext.Books;
+            IBook book = new Book(title, author, genre.ToString()) { Id = id };
+
+            if (!await _context.CheckIfBookExistsAsync(book.Id))
+                throw new Exception("This book does not exist");
+
+            await _context.UpdateBookAsync(book);
         }
 
-        public List<API.IUser> GetAllCustomers()
+        public async Task DeleteBookAsync(string id)
         {
-            return dataContext.Customers;
+            if (!await _context.CheckIfBookExistsAsync(id))
+                throw new Exception("This book does not exist");
+
+            await _context.DeleteBookAsync(id);
         }
 
-        public List<API.IEvent> GetAllEvents()
+        public async Task<Dictionary<string, IBook>> GetAllBooksAsync()
         {
-            return dataContext.Events;
+            return await _context.GetAllBooksAsync();
         }
 
-        public List<API.IState> GetAllState()
+        public async Task<string> GetBooksCountAsync()
         {
-            return dataContext.States;
+            return await _context.GetBooksCountAsync();
         }
 
-   
+        #endregion Book CRUD
 
-        public API.IBook GetBook(string id)
+        #region State CRUD
+
+        public async Task AddStateAsync(string id, IBook book, bool availability)
         {
-            return dataContext.Books[id];
+            if (!await _context.CheckIfBookExistsAsync(book.Id))
+                throw new Exception("This book does not exist!");
+
+            IState state = new State(book.Id, availability == true) { Id = id };
+            await _context.AddStateAsync(state);
         }
 
-        public API.IUser GetCustomer(string id)
+        public async Task<IState> GetStateAsync(string id)
         {
-            API.IUser result = null;
-            foreach (var x in dataContext.Customers)
-            {
-                if (x.Id == id)
-                {
-                    result = x;
-                    break;
-                }
-            }
-            return result;
+            IState? state = await _context.GetStateAsync(id);
+
+            if (state is null)
+                throw new Exception("This state does not exist!");
+
+            return state;
         }
 
-        public API.IEvent GetEvent(string id)
+        public async Task UpdateStateAsync(string id, IBook book, bool availability)
         {
-            API.IEvent result;
-            foreach (var x in dataContext.Events)
-            {
-                if (x.Id == id)
-                {
-                    result = x;
-                    return result;
-                }
-            }
-            return null;
+            if (!await _context.CheckIfBookExistsAsync(book.Id))
+                throw new Exception("This book does not exist!");
 
+            IState state = new State(book.Id, availability == true) { Id = id };
+
+            if (!await _context.CheckIfStateExistsAsync(state.Id))
+                throw new Exception("This state does not exist");
+
+            await _context.UpdateStateAsync(state);
         }
 
-        public API.IState GetState(string id)
+        public async Task DeleteStateAsync(string id)
         {
-            API.IState result = null;
-            foreach (var x in dataContext.States)
-            {
-                if (x.Id == id)
-                {
-                    result = x;
-                    break;
-                }
-            }
-            return result;
+            if (!await _context.CheckIfStateExistsAsync(id))
+                throw new Exception("This state does not exist");
+
+            await _context.DeleteStateAsync(id);
         }
+
+        public async Task<Dictionary<string, IState>> GetAllStatesAsync()
+        {
+            return await _context.GetAllStatesAsync();
+        }
+
+        public async Task<string> GetStatesCountAsync()
+        {
+            return await _context.GetStatesCountAsync();
+        }
+
+        #endregion State CRUD
+
+        #region Event CRUD
+
+        public async Task AddEventAsync(string id)
+        {
+            throw new NotImplementedException("This method is not implemented yet.");
+        }
+
+        public async Task<IEvent> GetEventAsync(string id)
+        {
+            IEvent? even = await _context.GetEventAsync(id);
+
+            if (even is null)
+                throw new Exception("This event does not exist!");
+
+            return even;
+        }
+
+        public async Task UpdateEventAsync(string id, DateTime eventDate)
+        {
+            throw new NotImplementedException("This method is not implemented yet.");
+        }
+
+        public async Task DeleteEventAsync(string id)
+        {
+            if (!await _context.CheckIfEventExistsAsync(id))
+                throw new Exception("This event does not exist");
+
+            await _context.DeleteEventAsync(id);
+        }
+
+        public async Task<Dictionary<string, IEvent>> GetAllEventsAsync()
+        {
+            return await _context.GetAllEventsAsync();
+        }
+
+        public async Task<string> GetEventsCountAsync()
+        {
+            return await _context.GetEventsCountAsync();
+        }
+
+        #endregion Event CRUD
 
     }
 }
