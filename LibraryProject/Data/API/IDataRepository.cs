@@ -57,11 +57,11 @@ namespace Data.API
 
 
         // Event CRUD
-        Task AddEventAsync(string id, string stateid, string customerid );
+        Task AddEventAsync(string id, string stateid, string customerid, string type);
 
         Task<IEvent> GetEventAsync(string id);
 
-        Task UpdateEventAsync(string id, DateTime eventdate, string stateid, string customerid);
+        Task UpdateEventAsync(string id, DateTime eventdate, string stateid, string customerid, string type);
 
         Task DeleteEventAsync(string id);
 
