@@ -10,14 +10,8 @@ namespace Data.API
     {
         public string Id { get; set; }
         public DateTime Date { get; set; }
-        public IBook Book { get; set; }
-        public StateType Availability { get; set; }
+        public string BookId { get; set; }
+        public bool Availability { get; set; }
 
-    }
-    public enum StateType
-    {
-        Unknown,
-        available,
-        taken,
     }
 }

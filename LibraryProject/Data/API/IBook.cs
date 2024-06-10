@@ -11,18 +11,7 @@ namespace Data.API
         public string Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
-        public BookGenres Genre { get; set; }
+        public string Genre { get; set; }
 
-    }
-    public enum BookGenres
-    {
-        none,
-        horror,
-        mystery,
-        thriller,
-        fantasy,
-        adventure,
-        fiction,
-        romance,
     }
 }

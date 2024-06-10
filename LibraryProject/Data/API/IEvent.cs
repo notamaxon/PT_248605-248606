@@ -9,8 +9,8 @@ namespace Data.API
     public interface IEvent
     {
         public DateTime EventDate { get; set; }
-        public IState State { get; set; }
+        public string StateId { get; set; }
         public string Id { get; set; }
-        public IUser Customer { get; set; }
+        public string CustomerId { get; set; }
     }
 }

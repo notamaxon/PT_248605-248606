@@ -13,13 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Database\Database.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Database.designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <Service Include="{3259aa49-8aa1-44d3-9025-a0b520596a8c}" />
   </ItemGroup>
 
@@ -29,6 +22,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Database.dbml</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Database\Database.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Database.designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -30,15 +30,15 @@ namespace Data.Database
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertState(State instance);
-    partial void UpdateState(State instance);
-    partial void DeleteState(State instance);
-    partial void InsertEvent(Event instance);
-    partial void UpdateEvent(Event instance);
-    partial void DeleteEvent(Event instance);
     partial void InsertBook(Book instance);
     partial void UpdateBook(Book instance);
     partial void DeleteBook(Book instance);
+    partial void InsertEvent(Event instance);
+    partial void UpdateEvent(Event instance);
+    partial void DeleteEvent(Event instance);
+    partial void InsertState(State instance);
+    partial void UpdateState(State instance);
+    partial void DeleteState(State instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
@@ -68,11 +68,11 @@ namespace Data.Database
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<State> States
+		public System.Data.Linq.Table<Book> Books
 		{
 			get
 			{
-				return this.GetTable<State>();
+				return this.GetTable<Book>();
 			}
 		}
 		
@@ -84,11 +84,11 @@ namespace Data.Database
 			}
 		}
 		
-		public System.Data.Linq.Table<Book> Books
+		public System.Data.Linq.Table<State> States
 		{
 			get
 			{
-				return this.GetTable<Book>();
+				return this.GetTable<State>();
 			}
 		}
 		
@@ -101,23 +101,21 @@ namespace Data.Database
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.States")]
-	public partial class State : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Books")]
+	public partial class Book : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _Id;
 		
-		private System.DateTime _Date;
+		private string _Title;
 		
-		private string _BookId;
+		private string _Author;
 		
-		private int _Availability;
+		private int _Genre;
 		
-		private EntitySet<Event> _Events;
-		
-		private EntityRef<Book> _Book;
+		private EntitySet<State> _States;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -125,18 +123,17 @@ namespace Data.Database
     partial void OnCreated();
     partial void OnIdChanging(string value);
     partial void OnIdChanged();
-    partial void OnDateChanging(System.DateTime value);
-    partial void OnDateChanged();
-    partial void OnBookIdChanging(string value);
-    partial void OnBookIdChanged();
-    partial void OnAvailabilityChanging(int value);
-    partial void OnAvailabilityChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
+    partial void OnGenreChanging(int value);
+    partial void OnGenreChanged();
     #endregion
 		
-		public State()
+		public Book()
 		{
-			this._Events = new EntitySet<Event>(new Action<Event>(this.attach_Events), new Action<Event>(this.detach_Events));
-			this._Book = default(EntityRef<Book>);
+			this._States = new EntitySet<State>(new Action<State>(this.attach_States), new Action<State>(this.detach_States));
 			OnCreated();
 		}
 		
@@ -160,114 +157,76 @@ namespace Data.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
-		public System.DateTime Date
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Title
 		{
 			get
 			{
-				return this._Date;
+				return this._Title;
 			}
 			set
 			{
-				if ((this._Date != value))
+				if ((this._Title != value))
 				{
-					this.OnDateChanging(value);
+					this.OnTitleChanging(value);
 					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string BookId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Author", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Author
 		{
 			get
 			{
-				return this._BookId;
+				return this._Author;
 			}
 			set
 			{
-				if ((this._BookId != value))
+				if ((this._Author != value))
 				{
-					if (this._Book.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBookIdChanging(value);
+					this.OnAuthorChanging(value);
 					this.SendPropertyChanging();
-					this._BookId = value;
-					this.SendPropertyChanged("BookId");
-					this.OnBookIdChanged();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Availability", DbType="Int NOT NULL")]
-		public int Availability
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genre", DbType="Int NOT NULL")]
+		public int Genre
 		{
 			get
 			{
-				return this._Availability;
+				return this._Genre;
 			}
 			set
 			{
-				if ((this._Availability != value))
+				if ((this._Genre != value))
 				{
-					this.OnAvailabilityChanging(value);
+					this.OnGenreChanging(value);
 					this.SendPropertyChanging();
-					this._Availability = value;
-					this.SendPropertyChanged("Availability");
-					this.OnAvailabilityChanged();
+					this._Genre = value;
+					this.SendPropertyChanged("Genre");
+					this.OnGenreChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="State_Event", Storage="_Events", ThisKey="Id", OtherKey="StateId")]
-		public EntitySet<Event> Events
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_State", Storage="_States", ThisKey="Id", OtherKey="BookId")]
+		public EntitySet<State> States
 		{
 			get
 			{
-				return this._Events;
+				return this._States;
 			}
 			set
 			{
-				this._Events.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_State", Storage="_Book", ThisKey="BookId", OtherKey="Id", IsForeignKey=true)]
-		public Book Book
-		{
-			get
-			{
-				return this._Book.Entity;
-			}
-			set
-			{
-				Book previousValue = this._Book.Entity;
-				if (((previousValue != value) 
-							|| (this._Book.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Book.Entity = null;
-						previousValue.States.Remove(this);
-					}
-					this._Book.Entity = value;
-					if ((value != null))
-					{
-						value.States.Add(this);
-						this._BookId = value.Id;
-					}
-					else
-					{
-						this._BookId = default(string);
-					}
-					this.SendPropertyChanged("Book");
-				}
+				this._States.Assign(value);
 			}
 		}
 		
@@ -291,16 +250,16 @@ namespace Data.Database
 			}
 		}
 		
-		private void attach_Events(Event entity)
+		private void attach_States(State entity)
 		{
 			this.SendPropertyChanging();
-			entity.State = this;
+			entity.Book = this;
 		}
 		
-		private void detach_Events(Event entity)
+		private void detach_States(State entity)
 		{
 			this.SendPropertyChanging();
-			entity.State = null;
+			entity.Book = null;
 		}
 	}
 	
@@ -520,21 +479,23 @@ namespace Data.Database
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Books")]
-	public partial class Book : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.States")]
+	public partial class State : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _Id;
 		
-		private string _Title;
+		private System.DateTime _Date;
 		
-		private string _Author;
+		private string _BookId;
 		
-		private int _Genre;
+		private bool _Availability;
 		
-		private EntitySet<State> _States;
+		private EntitySet<Event> _Events;
+		
+		private EntityRef<Book> _Book;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -542,17 +503,18 @@ namespace Data.Database
     partial void OnCreated();
     partial void OnIdChanging(string value);
     partial void OnIdChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnAuthorChanging(string value);
-    partial void OnAuthorChanged();
-    partial void OnGenreChanging(int value);
-    partial void OnGenreChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnBookIdChanging(string value);
+    partial void OnBookIdChanged();
+    partial void OnAvailabilityChanging(bool value);
+    partial void OnAvailabilityChanged();
     #endregion
 		
-		public Book()
+		public State()
 		{
-			this._States = new EntitySet<State>(new Action<State>(this.attach_States), new Action<State>(this.detach_States));
+			this._Events = new EntitySet<Event>(new Action<Event>(this.attach_Events), new Action<Event>(this.detach_Events));
+			this._Book = default(EntityRef<Book>);
 			OnCreated();
 		}
 		
@@ -576,76 +538,114 @@ namespace Data.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Title
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Date
 		{
 			get
 			{
-				return this._Title;
+				return this._Date;
 			}
 			set
 			{
-				if ((this._Title != value))
+				if ((this._Date != value))
 				{
-					this.OnTitleChanging(value);
+					this.OnDateChanging(value);
 					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Author", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Author
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string BookId
 		{
 			get
 			{
-				return this._Author;
+				return this._BookId;
 			}
 			set
 			{
-				if ((this._Author != value))
+				if ((this._BookId != value))
 				{
-					this.OnAuthorChanging(value);
+					if (this._Book.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBookIdChanging(value);
 					this.SendPropertyChanging();
-					this._Author = value;
-					this.SendPropertyChanged("Author");
-					this.OnAuthorChanged();
+					this._BookId = value;
+					this.SendPropertyChanged("BookId");
+					this.OnBookIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genre", DbType="Int NOT NULL")]
-		public int Genre
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Availability", DbType="Bit NOT NULL")]
+		public bool Availability
 		{
 			get
 			{
-				return this._Genre;
+				return this._Availability;
 			}
 			set
 			{
-				if ((this._Genre != value))
+				if ((this._Availability != value))
 				{
-					this.OnGenreChanging(value);
+					this.OnAvailabilityChanging(value);
 					this.SendPropertyChanging();
-					this._Genre = value;
-					this.SendPropertyChanged("Genre");
-					this.OnGenreChanged();
+					this._Availability = value;
+					this.SendPropertyChanged("Availability");
+					this.OnAvailabilityChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_State", Storage="_States", ThisKey="Id", OtherKey="BookId")]
-		public EntitySet<State> States
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="State_Event", Storage="_Events", ThisKey="Id", OtherKey="StateId")]
+		public EntitySet<Event> Events
 		{
 			get
 			{
-				return this._States;
+				return this._Events;
 			}
 			set
 			{
-				this._States.Assign(value);
+				this._Events.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_State", Storage="_Book", ThisKey="BookId", OtherKey="Id", IsForeignKey=true)]
+		public Book Book
+		{
+			get
+			{
+				return this._Book.Entity;
+			}
+			set
+			{
+				Book previousValue = this._Book.Entity;
+				if (((previousValue != value) 
+							|| (this._Book.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Book.Entity = null;
+						previousValue.States.Remove(this);
+					}
+					this._Book.Entity = value;
+					if ((value != null))
+					{
+						value.States.Add(this);
+						this._BookId = value.Id;
+					}
+					else
+					{
+						this._BookId = default(string);
+					}
+					this.SendPropertyChanged("Book");
+				}
 			}
 		}
 		
@@ -669,16 +669,16 @@ namespace Data.Database
 			}
 		}
 		
-		private void attach_States(State entity)
+		private void attach_Events(Event entity)
 		{
 			this.SendPropertyChanging();
-			entity.Book = this;
+			entity.State = this;
 		}
 		
-		private void detach_States(State entity)
+		private void detach_Events(Event entity)
 		{
 			this.SendPropertyChanging();
-			entity.Book = null;
+			entity.State = null;
 		}
 	}
 	
