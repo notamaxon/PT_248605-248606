@@ -9,6 +9,12 @@ namespace Presentation.Model
 {
     public class UserModelOperation
     {
+        public static UserModelOperation CreateModelOperation(IUserCRUD? userCrud = null)
+        {
+            return new UserModelOperation(userCrud);
+        }
+
+
         private IUserCRUD userCRUD;
 
         public UserModelOperation(IUserCRUD? userCrud = null)

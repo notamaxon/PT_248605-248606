@@ -9,6 +9,13 @@ namespace Presentation.Model
 {
     public class EventModelOperation
     {
+        public static EventModelOperation CreateModelOperation(IEventCRUD? eventCrud = null)
+        {
+            return new EventModelOperation(eventCrud ?? IEventCRUD.CreateEventCRUD());
+        }
+
+
+
         private IEventCRUD eventCRUD;
 
         public EventModelOperation(IEventCRUD? eventCrud = null)

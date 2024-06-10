@@ -9,6 +9,12 @@ namespace Presentation.Model
 {
     public class StateModelOperation
     {
+        public static StateModelOperation CreateModelOperation(IStateCRUD? stateCrud = null)
+        {
+            return new StateModelOperation(stateCrud ?? IStateCRUD.CreateStateCRUD());
+        }
+
+
         private IStateCRUD stateCRUD;
 
         public StateModelOperation(IStateCRUD? stateCrud = null)

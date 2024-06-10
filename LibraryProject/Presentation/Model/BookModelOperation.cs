@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace Presentation.Model
 {
+
+
     public class BookModelOperation
     {
+        public static BookModelOperation CreateModelOperation(IBookCRUD? bookCrud = null)
+        {
+            return new BookModelOperation(bookCrud ?? IBookCRUD.CreateBookCRUD());
+        }
+
+
         private IBookCRUD bookCRUD;
 
         public BookModelOperation(IBookCRUD? bookCrud = null)

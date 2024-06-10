@@ -13,8 +13,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
+    <Folder Include="ViewModel\Event\" />
+    <Folder Include="ViewModel\User\" />
+    <Folder Include="ViewModel\State\" />
+    <Folder Include="ViewModel\Book\" />
+    <Folder Include="View\Event\" />
+    <Folder Include="View\Book\" />
+    <Folder Include="View\User\" />
+    <Folder Include="View\State\" />
   </ItemGroup>
 
 </Project>
