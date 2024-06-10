@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Data.API;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Data.API;
 
 namespace Data.Implementation
 {
@@ -15,39 +14,33 @@ namespace Data.Implementation
             _context = context;
         }
 
-        #region User CRUD
-
+        // User CRUD
         public async Task AddUserAsync(string id, string email, string phone, string name)
         {
-            IUser user = new User(name, email, phone) { Id = id };
+            IUser user = new User(name, email, phone);
             await _context.AddUserAsync(user);
         }
 
         public async Task<IUser> GetUserAsync(string id)
         {
-            IUser? user = await _context.GetUserAsync(id);
-
-            if (user is null)
+            IUser user = await _context.GetUserAsync(id);
+            if (user == null)
                 throw new Exception("This user does not exist!");
-
             return user;
         }
 
         public async Task UpdateUserAsync(string id, string email, string phone, string name)
         {
             IUser user = new User(name, email, phone) { Id = id };
-
-            if (!await _context.CheckIfUserExistsAsync(user.Id))
+            if (!await CheckIfUserExistsAsync(user.Id))
                 throw new Exception("This user does not exist");
-
             await _context.UpdateUserAsync(user);
         }
 
         public async Task DeleteUserAsync(string id)
         {
-            if (!await _context.CheckIfUserExistsAsync(id))
+            if (!await CheckIfUserExistsAsync(id))
                 throw new Exception("This user does not exist");
-
             await _context.DeleteUserAsync(id);
         }
 
@@ -61,41 +54,33 @@ namespace Data.Implementation
             return await _context.GetUsersCountAsync();
         }
 
-        #endregion User CRUD
-
-        #region Book CRUD
-
+        // Book CRUD
         public async Task AddBookAsync(string id, string title, string author, string genre)
         {
-            IBook book = new Book(title, author, genre.ToString()) { Id = id };
+            IBook book = new Book(title, author, genre) { Id = id };
             await _context.AddBookAsync(book);
         }
 
         public async Task<IBook> GetBookAsync(string id)
         {
-            IBook? book = await _context.GetBookAsync(id);
-
-            if (book is null)
+            IBook book = await _context.GetBookAsync(id);
+            if (book == null)
                 throw new Exception("This book does not exist!");
-
             return book;
         }
 
         public async Task UpdateBookAsync(string id, string title, string author, string genre)
         {
-            IBook book = new Book(title, author, genre.ToString()) { Id = id };
-
-            if (!await _context.CheckIfBookExistsAsync(book.Id))
+            IBook book = new Book(title, author, genre) { Id = id };
+            if (!await CheckIfBookExistsAsync(book.Id))
                 throw new Exception("This book does not exist");
-
             await _context.UpdateBookAsync(book);
         }
 
         public async Task DeleteBookAsync(string id)
         {
-            if (!await _context.CheckIfBookExistsAsync(id))
+            if (!await CheckIfBookExistsAsync(id))
                 throw new Exception("This book does not exist");
-
             await _context.DeleteBookAsync(id);
         }
 
@@ -109,47 +94,39 @@ namespace Data.Implementation
             return await _context.GetBooksCountAsync();
         }
 
-        #endregion Book CRUD
-
-        #region State CRUD
-
-        public async Task AddStateAsync(string id, IBook book, bool availability)
+        // State CRUD
+        public async Task AddStateAsync(string id, string bookid, bool availability)
         {
-            if (!await _context.CheckIfBookExistsAsync(book.Id))
+            if (!await CheckIfBookExistsAsync(bookid))
                 throw new Exception("This book does not exist!");
 
-            IState state = new State(book.Id, availability == true) { Id = id };
+            IState state = new State(bookid, availability) { Id = id };
             await _context.AddStateAsync(state);
         }
 
         public async Task<IState> GetStateAsync(string id)
         {
-            IState? state = await _context.GetStateAsync(id);
-
-            if (state is null)
+            IState state = await _context.GetStateAsync(id);
+            if (state == null)
                 throw new Exception("This state does not exist!");
-
             return state;
         }
 
-        public async Task UpdateStateAsync(string id, IBook book, bool availability)
+        public async Task UpdateStateAsync(string id, string bookid, bool availability)
         {
-            if (!await _context.CheckIfBookExistsAsync(book.Id))
+            if (!await CheckIfBookExistsAsync(bookid))
                 throw new Exception("This book does not exist!");
 
-            IState state = new State(book.Id, availability == true) { Id = id };
-
-            if (!await _context.CheckIfStateExistsAsync(state.Id))
+            IState state = new State(bookid, availability) { Id = id };
+            if (!await CheckIfStateExistsAsync(state.Id))
                 throw new Exception("This state does not exist");
-
             await _context.UpdateStateAsync(state);
         }
 
         public async Task DeleteStateAsync(string id)
         {
-            if (!await _context.CheckIfStateExistsAsync(id))
+            if (!await CheckIfStateExistsAsync(id))
                 throw new Exception("This state does not exist");
-
             await _context.DeleteStateAsync(id);
         }
 
@@ -163,35 +140,39 @@ namespace Data.Implementation
             return await _context.GetStatesCountAsync();
         }
 
-        #endregion State CRUD
-
-        #region Event CRUD
-
-        public async Task AddEventAsync(string id)
+        // Event CRUD
+        public async Task AddEventAsync(string id, string stateid, string customerid, string type)
         {
-            throw new NotImplementedException("This method is not implemented yet.");
+            if (!await CheckIfUserExistsAsync(customerid))
+                throw new Exception("This user does not exist!");
+
+            if (!await CheckIfStateExistsAsync(stateid))
+                throw new Exception("This state does not exist!");
+
+            IEvent eventObj = new Event(stateid, customerid, type) { Id = id };
+            await _context.AddEventAsync(eventObj);
         }
 
         public async Task<IEvent> GetEventAsync(string id)
         {
-            IEvent? even = await _context.GetEventAsync(id);
-
-            if (even is null)
+            IEvent eventObj = await _context.GetEventAsync(id);
+            if (eventObj == null)
                 throw new Exception("This event does not exist!");
-
-            return even;
+            return eventObj;
         }
 
-        public async Task UpdateEventAsync(string id, DateTime eventDate)
+        public async Task UpdateEventAsync(string id, DateTime eventdate, string stateid, string customerid, string type)
         {
-            throw new NotImplementedException("This method is not implemented yet.");
+            IEvent eventObj = new Event(stateid, customerid, type) { Id = id, EventDate = eventdate };
+            if (!await CheckIfEventExistsAsync(eventObj.Id))
+                throw new Exception("This event does not exist");
+            await _context.UpdateEventAsync(eventObj);
         }
 
         public async Task DeleteEventAsync(string id)
         {
-            if (!await _context.CheckIfEventExistsAsync(id))
+            if (!await CheckIfEventExistsAsync(id))
                 throw new Exception("This event does not exist");
-
             await _context.DeleteEventAsync(id);
         }
 
@@ -205,7 +186,25 @@ namespace Data.Implementation
             return await _context.GetEventsCountAsync();
         }
 
-        #endregion Event CRUD
+        // Utils
+        public async Task<bool> CheckIfUserExistsAsync(string id)
+        {
+            return await _context.CheckIfUserExistsAsync(id);
+        }
 
+        public async Task<bool> CheckIfBookExistsAsync(string id)
+        {
+            return await _context.CheckIfBookExistsAsync(id);
+        }
+
+        public async Task<bool> CheckIfStateExistsAsync(string id)
+        {
+            return await _context.CheckIfStateExistsAsync(id);
+        }
+
+        public async Task<bool> CheckIfEventExistsAsync(string id)
+        {
+            return await _context.CheckIfEventExistsAsync(id);
+        }
     }
 }
