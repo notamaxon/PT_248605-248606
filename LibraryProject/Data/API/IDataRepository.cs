@@ -61,7 +61,7 @@ namespace Data.API
 
         Task<IEvent> GetEventAsync(string id);
 
-        Task UpdateEventAsync(string id, DateTime eventdate, string stateid, string type, string customerid);
+        Task UpdateEventAsync(string id, DateTime eventdate, string stateid, string customerid, string type);
 
         Task DeleteEventAsync(string id);
 
