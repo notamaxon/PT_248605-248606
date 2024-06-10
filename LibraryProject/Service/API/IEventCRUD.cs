@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Data.API;
+using Service.Implementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,23 @@ namespace Service.API
 {
     public interface IEventCRUD
     {
+        static IEventCRUD CreateEventCRUD(IDataRepository? dataRepository = null)
+        {
+            return new EventCRUD(dataRepository ?? IDataRepository.CreateDatabase());
+        }
+
+        Task AddEventAsync(string id, string stateid, string customerid);
+
+        Task<IEventDTO> GetEventAsync(string id);
+
+        Task UpdateEventAsync(string id, DateTime eventdate, string stateid, string customerid);
+
+        Task DeleteEventAsync(string id);
+
+        Task<Dictionary<string, IEventDTO>> GetAllEventsAsync();
+
+        Task<string> GetEventsCountAsync();
+
+
     }
 }
