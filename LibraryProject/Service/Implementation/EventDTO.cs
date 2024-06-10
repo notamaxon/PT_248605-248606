@@ -9,6 +9,8 @@ namespace Service.Implementation
 {
     internal class EventDTO : IEventDTO
     {
+        private object type;
+
         public DateTime EventDate { get; set; }
         public string StateId { get; set; }
         public string Id { get; set; }
@@ -20,9 +22,8 @@ namespace Service.Implementation
             this.StateId = stateid;
             this.Id = id;
             this.CustomerId = customerid;
-
+            this.Type = type;
         }
-
 
     }
 }

@@ -14,10 +14,10 @@ namespace Service.Implementation
         public string BookId { get; set; }
         public bool Availability { get; set; }
 
-        public StateDTO(string id, DateTime date, string bookId, bool availability)
+        public StateDTO(string id, string bookId, bool availability)
         {
             this.Id = id;
-            this.Date = date;
+            this.Date = DateTime.Now;
             this.BookId = bookId;
             this.Availability = availability;
         }
